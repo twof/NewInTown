@@ -1,0 +1,6 @@
+framework module Pods_NewInTown {
+  umbrella header "Pods-NewInTown-umbrella.h"
+
+  export *
+  module * { export * }
+}
