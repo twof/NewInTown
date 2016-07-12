@@ -7,14 +7,20 @@
 //
 
 import UIKit
+import Material
 
 class NearbyEventsViewTableController: UITableViewController {
+    
     
     
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        view.backgroundColor = MaterialColor.white
+        EventHelper.rangeToSearch = 10
+        EventHelper.locationAddress = "738 Hayes St, San Francisco, California, United States"
+        EventHelper.constructEventListWithParams()
+        tableView.reloadData()
     }
     
     override func didReceiveMemoryWarning() {
@@ -25,16 +31,17 @@ class NearbyEventsViewTableController: UITableViewController {
         return 1
     }
     
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int{
+        print(EventHelper.eventList.count)
+        return EventHelper.eventList.count
     }
     
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        var cell = tableView.dequeueReusableCellWithIdentifier("EventCardViewCell") as? EventCardViewCell
+        let cell = tableView.dequeueReusableCellWithIdentifier("EventCardViewCell") as? EventCardViewCell
+        cell?.eventNameLabel.text = EventHelper.eventList[indexPath.row].name
         
         return cell!
-
     }
     
 

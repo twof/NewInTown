@@ -11,8 +11,7 @@ import Material
 
 class EventCardViewCell: UITableViewCell {
     
-    
-    @IBOutlet weak var eventCardView: CardView!
+    @IBOutlet weak var eventNameLabel: UILabel!
 
     override func awakeFromNib() {
         super.awakeFromNib()

@@ -58,36 +58,32 @@
             </objects>
             <point key="canvasLocation" x="-172" y="509"/>
         </scene>
-        <!--Table View Controller-->
+        <!--Nearby Events View Table Controller-->
         <scene sceneID="qAu-41-EcJ">
             <objects>
-                <tableViewController storyboardIdentifier="EventListController" id="ZPf-YY-e6h" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="EventListController" id="ZPf-YY-e6h" customClass="NearbyEventsViewTableController" customModule="NewInTown" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="96" sectionHeaderHeight="28" sectionFooterHeight="28" id="Tag-Lu-oib">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="96" id="3ws-tL-01U" customClass="EventCardViewCell" customModule="NewInTown" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="EventCardViewCell" rowHeight="96" id="3ws-tL-01U" customClass="EventCardViewCell" customModule="NewInTown" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="600" height="96"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="3ws-tL-01U" id="Xyr-8u-49Y">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="95.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Uy4-Sj-lBn" customClass="CardView" customModule="Material">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="95.5"/>
-                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        </view>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zzZ-DK-Uif">
+                                            <rect key="frame" x="114" y="37" width="42" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
                                     </subviews>
-                                    <constraints>
-                                        <constraint firstAttribute="trailing" secondItem="Uy4-Sj-lBn" secondAttribute="trailing" id="BaF-Dq-uOs"/>
-                                        <constraint firstItem="Uy4-Sj-lBn" firstAttribute="leading" secondItem="Xyr-8u-49Y" secondAttribute="leading" id="Qhr-w2-YX2"/>
-                                        <constraint firstAttribute="bottom" secondItem="Uy4-Sj-lBn" secondAttribute="bottom" id="VFJ-Up-BTx"/>
-                                        <constraint firstItem="Uy4-Sj-lBn" firstAttribute="top" secondItem="Xyr-8u-49Y" secondAttribute="top" id="vgl-8D-nt0"/>
-                                    </constraints>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <outlet property="eventCardView" destination="Uy4-Sj-lBn" id="WPv-Po-eNz"/>
+                                    <outlet property="eventNameLabel" destination="zzZ-DK-Uif" id="QNN-we-Sau"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
