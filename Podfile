@@ -8,4 +8,10 @@ target 'NewInTown' do
   # Pods for NewInTown
   pod 'Alamofire'
   pod 'SwiftyJSON'
+  pod 'Material'
+  pod 'Parse'
+  pod 'FBSDKCoreKit'
+  pod 'ParseUI'
+  pod 'ParseFacebookUtilsV4'
+  pod 'ConvenienceKit'
 end
