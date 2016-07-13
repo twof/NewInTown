@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Alamofire
 import Material
 
 class NearbyEventsViewTableController: UITableViewController {
@@ -19,7 +20,13 @@ class NearbyEventsViewTableController: UITableViewController {
         view.backgroundColor = MaterialColor.white
         EventHelper.rangeToSearch = 10
         EventHelper.locationAddress = "738 Hayes St, San Francisco, California, United States"
-        EventHelper.constructEventListWithParams()
+        EventHelper.constructEventListWithParams({ eventList, error in
+            if(error != nil){
+                print(error)
+            }
+            EventHelper.eventList = eventList!
+            self.tableView.reloadData()
+        })
         tableView.reloadData()
     }
     

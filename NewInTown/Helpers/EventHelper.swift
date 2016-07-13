@@ -18,7 +18,7 @@ class EventHelper {
     private static let token = EVENTBRIGHT_PRIVATE_KEY
     
     
-    static func constructEventListWithParams(completionHandler: ([Event]) -> ()){
+    static func constructEventListWithParams(completionHandler: ([Event]?, NSError?) -> ()){
         let urlToGet = constructAPIURL()
         Alamofire.request(.GET, urlToGet).validate().responseJSON() { response in
             switch response.result {
@@ -31,13 +31,13 @@ class EventHelper {
                     for x in eventListJson{
                         eventList.append(Event(json: x))
                     }
+                    completionHandler(eventList, nil)
                 }
             case .Failure(let error):
                 print(error)
-                eventList = [Event]()
+                completionHandler(nil, error)
             }
         }
-        return eventList
     }
     
     private static func constructAPIURL() -> String{
