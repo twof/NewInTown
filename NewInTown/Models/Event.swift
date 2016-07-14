@@ -9,7 +9,7 @@
 import Foundation
 import SwiftyJSON
 
-struct Event {
+class Event {
     let name: String
     let description: String
     var price: Double!
@@ -21,7 +21,7 @@ struct Event {
     let venueID: String
     var venue: Venue!
     
-    init(json: JSON) {
+    init(json: JSON, completion: () -> Void) {
         self.name = json["name"]["text"].stringValue
         self.description = json["description"]["text"].stringValue
         self.link = json["url"].stringValue
@@ -31,11 +31,17 @@ struct Event {
         self.venueID = json["venue_id"].stringValue
         self.imageURL = json["logo"]["url"].stringValue
         
-        EventHelper.getEventVenueForVenueId(venueID, completionHandler: { venue, error in
+        EventHelper.getEventVenueForVenueId(venueID, completionHandler: {venue, error in
+            
             if(error != nil){
                 print(error)
             }
+            //print(venue?.name)
             self.venue = venue
+            print(self.venue.name)
+            completion()
         })
+
+        
     }
 }

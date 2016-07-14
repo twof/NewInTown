@@ -21,10 +21,11 @@ class NearbyEventsViewTableController: UITableViewController {
             if(error != nil){
                 print(error)
             }
+            
             EventHelper.eventList = eventList!
             self.tableView.reloadData()
+            //print(EventHelper.eventList[0].venue.name) This breaks
         })
-        tableView.reloadData()
     }
     
     override func didReceiveMemoryWarning() {
@@ -54,6 +55,4 @@ class NearbyEventsViewTableController: UITableViewController {
         
         vc.event = EventHelper.eventList[indexPath]
     }
-    
-
 }
