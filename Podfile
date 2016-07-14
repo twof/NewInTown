@@ -14,4 +14,6 @@ target 'NewInTown' do
   pod 'ParseUI'
   pod 'ParseFacebookUtilsV4'
   pod 'ConvenienceKit'
+  pod 'AlamofireImage'
+  pod 'AlamofireNetworkActivityIndicator'
 end

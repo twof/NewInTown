@@ -18,6 +18,8 @@ struct Event {
     let endTime: String
     let eventID: String
     let imageURL: String
+    let venueID: String
+    var venue: Venue!
     
     init(json: JSON) {
         self.name = json["name"]["text"].stringValue
@@ -26,6 +28,14 @@ struct Event {
         self.startTime = json["start"]["local"].stringValue
         self.endTime = json["end"]["local"].stringValue
         self.eventID = json["id"].stringValue
+        self.venueID = json["venue_id"].stringValue
         self.imageURL = json["logo"]["url"].stringValue
+        
+        EventHelper.getEventVenueForVenueId(venueID, completionHandler: { venue, error in
+            if(error != nil){
+                print(error)
+            }
+            self.venue = venue
+        })
     }
 }

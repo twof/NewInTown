@@ -11,9 +11,6 @@ import Alamofire
 import Material
 
 class NearbyEventsViewTableController: UITableViewController {
-    
-    
-    
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -49,6 +46,13 @@ class NearbyEventsViewTableController: UITableViewController {
         cell?.eventNameLabel.text = EventHelper.eventList[indexPath.row].name
         
         return cell!
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        let vc = segue.destinationViewController as! EventDetailViewController
+        let indexPath = (self.tableView.indexPathForSelectedRow?.row)! as Int
+        
+        vc.event = EventHelper.eventList[indexPath]
     }
     
 
