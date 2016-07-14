@@ -16,4 +16,5 @@ target 'NewInTown' do
   pod 'ConvenienceKit'
   pod 'AlamofireImage'
   pod 'AlamofireNetworkActivityIndicator'
+  pod 'JSQMessagesViewController'
 end

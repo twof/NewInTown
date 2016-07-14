@@ -15,6 +15,9 @@ PODS:
     - Bolts (~> 1.7)
   - FBSDKLoginKit (4.13.1):
     - FBSDKCoreKit
+  - JSQMessagesViewController (7.3.3):
+    - JSQSystemSoundPlayer (~> 2.0.1)
+  - JSQSystemSoundPlayer (2.0.1)
   - Material (1.42.7)
   - Parse (1.13.0):
     - Bolts/Tasks (~> 1.6)
@@ -35,6 +38,7 @@ DEPENDENCIES:
   - AlamofireNetworkActivityIndicator
   - ConvenienceKit
   - FBSDKCoreKit
+  - JSQMessagesViewController
   - Material
   - Parse
   - ParseFacebookUtilsV4
@@ -49,12 +53,14 @@ SPEC CHECKSUMS:
   ConvenienceKit: ba1ad8797897dc0d011676e961a2f3e9b270c841
   FBSDKCoreKit: 2807fe0da2ddb49a1469da6d6ff597f99912980f
   FBSDKLoginKit: 6d350cb6a22d6956e9d078885de6ee8a0ebc51b4
+  JSQMessagesViewController: 0ee3f80237268192a3e8337fd0d787f1a1bf5a7a
+  JSQSystemSoundPlayer: c5850e77a4363ffd374cd851154b9af93264ed8d
   Material: 2d46a44719b1f19e52956518af8aea54ac714963
   Parse: f51c24d2feb412e4b2d6cc73d37cb24e8d0089bc
   ParseFacebookUtilsV4: 2f30c2b7021c8005d3042781da7ef87d06589421
   ParseUI: af2eba584799da4a9fbdac0e178662d7438b502e
   SwiftyJSON: 04ccea08915aa0109039157c7974cf0298da292a
 
-PODFILE CHECKSUM: 12a73195836bd9d6cf7aee908d03a29743792f8d
+PODFILE CHECKSUM: e1e13cb4a7bf5b221a9567ca47df97e8bc420f1a
 
 COCOAPODS: 1.0.1
