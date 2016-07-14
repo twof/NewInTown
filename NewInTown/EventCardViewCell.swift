@@ -12,7 +12,8 @@ import Material
 class EventCardViewCell: UITableViewCell {
     
     @IBOutlet weak var eventNameLabel: UILabel!
-
+    @IBOutlet weak var eventLogoImage: UIImageView!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

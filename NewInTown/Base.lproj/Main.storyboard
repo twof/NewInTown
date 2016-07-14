@@ -24,7 +24,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Event Name" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zzZ-DK-Uif">
-                                            <rect key="frame" x="8" y="26" width="464" height="21"/>
+                                            <rect key="frame" x="128" y="8" width="464" height="21"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="464" id="1w0-1g-70x"/>
                                             </constraints>
@@ -32,13 +32,21 @@
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="fmN-Yy-maA">
+                                            <rect key="frame" x="8" y="8" width="112" height="79.5"/>
+                                        </imageView>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstItem="zzZ-DK-Uif" firstAttribute="top" secondItem="Xyr-8u-49Y" secondAttribute="topMargin" constant="18" id="6X7-Nv-MiV"/>
-                                        <constraint firstItem="zzZ-DK-Uif" firstAttribute="leading" secondItem="Xyr-8u-49Y" secondAttribute="leadingMargin" id="HVV-Jr-tzc"/>
+                                        <constraint firstItem="zzZ-DK-Uif" firstAttribute="top" secondItem="Xyr-8u-49Y" secondAttribute="topMargin" id="6X7-Nv-MiV"/>
+                                        <constraint firstItem="fmN-Yy-maA" firstAttribute="leading" secondItem="Xyr-8u-49Y" secondAttribute="leadingMargin" id="Cky-6S-Nch"/>
+                                        <constraint firstItem="zzZ-DK-Uif" firstAttribute="leading" secondItem="fmN-Yy-maA" secondAttribute="trailing" constant="8" id="Dfq-4A-pti"/>
+                                        <constraint firstItem="zzZ-DK-Uif" firstAttribute="leading" secondItem="Xyr-8u-49Y" secondAttribute="leadingMargin" constant="120" id="HVV-Jr-tzc"/>
+                                        <constraint firstItem="fmN-Yy-maA" firstAttribute="bottom" secondItem="Xyr-8u-49Y" secondAttribute="bottomMargin" id="UE1-BD-Oe2"/>
+                                        <constraint firstItem="fmN-Yy-maA" firstAttribute="top" secondItem="Xyr-8u-49Y" secondAttribute="topMargin" id="nVF-gj-XaH"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
+                                    <outlet property="eventLogoImage" destination="fmN-Yy-maA" id="osb-R8-NMh"/>
                                     <outlet property="eventNameLabel" destination="zzZ-DK-Uif" id="QNN-we-Sau"/>
                                     <segue destination="0Oo-1Q-Sar" kind="showDetail" id="32L-j3-JTP"/>
                                 </connections>

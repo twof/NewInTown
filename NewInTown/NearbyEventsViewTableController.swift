@@ -45,6 +45,7 @@ class NearbyEventsViewTableController: UITableViewController {
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("EventCardViewCell") as? EventCardViewCell
         cell?.eventNameLabel.text = EventHelper.eventList[indexPath.row].name
+        loadEventImage(EventHelper.eventList[indexPath.row].imageURL, imageViewToSet: (cell?.eventLogoImage)!)
         
         return cell!
     }
@@ -54,5 +55,22 @@ class NearbyEventsViewTableController: UITableViewController {
         let indexPath = (self.tableView.indexPathForSelectedRow?.row)! as Int
         
         vc.event = EventHelper.eventList[indexPath]
+    }
+    
+    func loadEventImage(urlString: String, imageViewToSet: UIImageView){
+        Alamofire.request(.GET, urlString)
+            .responseImage { response in
+                debugPrint(response)
+                
+                print(response.request)
+                print(response.response)
+                debugPrint(response.result)
+                
+                if let image = response.result.value {
+                    let size = CGSize(width: imageViewToSet.frame.width, height: imageViewToSet.frame.height)
+                    let aspectScaledToFitImage = image.af_imageAspectScaledToFitSize(size)
+                    imageViewToSet.image = aspectScaledToFitImage
+                }
+        }
     }
 }
