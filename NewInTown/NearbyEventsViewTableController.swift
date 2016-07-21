@@ -73,4 +73,13 @@ class NearbyEventsViewTableController: UITableViewController {
                 }
         }
     }
+    
+    
+    @IBAction func unwindToEventListViewController(segue: UIStoryboardSegue) {
+        
+        // for now, simply defining the method is sufficient.
+        // we'll add code later
+        
+    }
+
 }

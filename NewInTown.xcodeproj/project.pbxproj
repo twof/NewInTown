@@ -12,10 +12,10 @@
 		246703361D3412B10073D292 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 246703341D3412B10073D292 /* Main.storyboard */; };
 		246703381D3412B10073D292 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 246703371D3412B10073D292 /* Assets.xcassets */; };
 		2467033B1D3412B10073D292 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 246703391D3412B10073D292 /* LaunchScreen.storyboard */; };
-		246703431D3418CE0073D292 /* Keys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 246703421D3418CE0073D292 /* Keys.swift */; };
+		24866D871D41505D004AD863 /* Keys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24866D861D41505D004AD863 /* Keys.swift */; };
+		24976D411D4153C200D02373 /* EventDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24976D401D4153C200D02373 /* EventDetailViewController.swift */; };
 		24D727901D343E6D0067310A /* EventCardViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D7278F1D343E6D0067310A /* EventCardViewCell.swift */; };
 		24D727921D3441210067310A /* NearbyEventsViewTableController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D727911D3441210067310A /* NearbyEventsViewTableController.swift */; };
-		24DA52D01D36B6C300493272 /* EventDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24DA52CF1D36B6C300493272 /* EventDetailViewController.swift */; };
 		24F70E381D345624001FE077 /* ParseLoginHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24F70E371D345624001FE077 /* ParseLoginHelper.swift */; };
 		24F70E3A1D345654001FE077 /* ErrorHandling.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24F70E391D345654001FE077 /* ErrorHandling.swift */; };
 		24F70E3D1D3558D9001FE077 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24F70E3C1D3558D9001FE077 /* Event.swift */; };
@@ -31,10 +31,10 @@
 		246703371D3412B10073D292 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2467033A1D3412B10073D292 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2467033C1D3412B10073D292 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		246703421D3418CE0073D292 /* Keys.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Keys.swift; sourceTree = "<group>"; };
+		24866D861D41505D004AD863 /* Keys.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Keys.swift; sourceTree = "<group>"; };
+		24976D401D4153C200D02373 /* EventDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventDetailViewController.swift; sourceTree = "<group>"; };
 		24D7278F1D343E6D0067310A /* EventCardViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventCardViewCell.swift; sourceTree = "<group>"; };
 		24D727911D3441210067310A /* NearbyEventsViewTableController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NearbyEventsViewTableController.swift; sourceTree = "<group>"; };
-		24DA52CF1D36B6C300493272 /* EventDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventDetailViewController.swift; sourceTree = "<group>"; };
 		24F70E371D345624001FE077 /* ParseLoginHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParseLoginHelper.swift; sourceTree = "<group>"; };
 		24F70E391D345654001FE077 /* ErrorHandling.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ErrorHandling.swift; sourceTree = "<group>"; };
 		24F70E3C1D3558D9001FE077 /* Event.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
@@ -92,10 +92,10 @@
 				246703371D3412B10073D292 /* Assets.xcassets */,
 				246703391D3412B10073D292 /* LaunchScreen.storyboard */,
 				2467033C1D3412B10073D292 /* Info.plist */,
-				246703421D3418CE0073D292 /* Keys.swift */,
+				24866D861D41505D004AD863 /* Keys.swift */,
 				24D7278F1D343E6D0067310A /* EventCardViewCell.swift */,
+				24976D401D4153C200D02373 /* EventDetailViewController.swift */,
 				24D727911D3441210067310A /* NearbyEventsViewTableController.swift */,
-				24DA52CF1D36B6C300493272 /* EventDetailViewController.swift */,
 			);
 			path = NewInTown;
 			sourceTree = "<group>";
@@ -257,10 +257,10 @@
 				24F70E3F1D3560AC001FE077 /* EventHelper.swift in Sources */,
 				243D3D1A1D38070000C9F72A /* Venue.swift in Sources */,
 				24F70E3A1D345654001FE077 /* ErrorHandling.swift in Sources */,
-				246703431D3418CE0073D292 /* Keys.swift in Sources */,
-				24DA52D01D36B6C300493272 /* EventDetailViewController.swift in Sources */,
+				24976D411D4153C200D02373 /* EventDetailViewController.swift in Sources */,
 				24D727921D3441210067310A /* NearbyEventsViewTableController.swift in Sources */,
 				246703311D3412B10073D292 /* AppDelegate.swift in Sources */,
+				24866D871D41505D004AD863 /* Keys.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
