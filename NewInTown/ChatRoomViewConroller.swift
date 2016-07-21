@@ -9,15 +9,21 @@ import UIKit
 import JSQMessagesViewController
 
 class ChatRoomViewController: JSQMessagesViewController {
+    var chatRoom: ChatRoom!
     let incomingBubble = JSQMessagesBubbleImageFactory().incomingMessagesBubbleImageWithColor(UIColor(red: 10/255, green: 180/255, blue: 230/255, alpha: 1.0))
     let outgoingBubble = JSQMessagesBubbleImageFactory().outgoingMessagesBubbleImageWithColor(UIColor.lightGrayColor())
     var messages = [JSQMessage]()
+    var name: String!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        
         self.setup()
         self.addDemoMessages()
+        
+        ParseHelper.initializeChatRoom(name, completion: {(newChatRoom) in
+            self.chatRoom = newChatRoom
+        })
     }
     
     override func didReceiveMemoryWarning() {

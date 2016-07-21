@@ -9,7 +9,7 @@ target 'NewInTown' do
   pod 'Alamofire'
   pod 'SwiftyJSON'
   pod 'Material'
-  pod 'Parse'
+  pod 'Parse', '~> 1.13.0'
   pod 'FBSDKCoreKit'
   pod 'ParseUI'
   pod 'ParseFacebookUtilsV4'

@@ -44,6 +44,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             $0.applicationId = "newInTown"
             $0.server = "https://newintown-parse-arr.herokuapp.com/parse"
         }
+        
         Parse.initializeWithConfiguration(configuration)
         
         let acl = PFACL()
@@ -51,7 +52,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         PFACL.setDefaultACL(acl, withAccessForCurrentUser: true)
         // Initialize Facebook
         // 1
+        
+        
         PFFacebookUtils.initializeFacebookWithApplicationLaunchOptions(launchOptions)
+
         
         // check if we have logged in user
         // 2
@@ -79,6 +83,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
         self.window?.rootViewController = startViewController;
         self.window?.makeKeyAndVisible()
+        
+
         
         return FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
     }
