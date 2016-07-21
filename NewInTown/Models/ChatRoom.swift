@@ -26,6 +26,13 @@ class ChatRoom: PFObject, PFSubclassing {
         super.init()
     }
     
+    init(name: String) {
+        super.init()
+        self.name = name
+        userList = []
+        uploadChatRoom()
+    }
+    
     override class func initialize() {
         var onceToken : dispatch_once_t = 0;
         dispatch_once(&onceToken) {
@@ -35,6 +42,6 @@ class ChatRoom: PFObject, PFSubclassing {
     }
     
     func uploadChatRoom() {
-        
+        self.saveInBackground()
     }
 }
