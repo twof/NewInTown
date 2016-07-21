@@ -41,7 +41,5 @@ class Event {
             print(self.venue.name)
             completion()
         })
-
-        
     }
 }

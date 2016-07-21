@@ -14,6 +14,8 @@
 		2467033B1D3412B10073D292 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 246703391D3412B10073D292 /* LaunchScreen.storyboard */; };
 		24866D871D41505D004AD863 /* Keys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24866D861D41505D004AD863 /* Keys.swift */; };
 		24976D411D4153C200D02373 /* EventDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24976D401D4153C200D02373 /* EventDetailViewController.swift */; };
+		24976D431D4160A000D02373 /* ChatRoomViewConroller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24976D421D4160A000D02373 /* ChatRoomViewConroller.swift */; };
+		24976D461D41639600D02373 /* ChatRoom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24976D451D41639600D02373 /* ChatRoom.swift */; };
 		24D727901D343E6D0067310A /* EventCardViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D7278F1D343E6D0067310A /* EventCardViewCell.swift */; };
 		24D727921D3441210067310A /* NearbyEventsViewTableController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D727911D3441210067310A /* NearbyEventsViewTableController.swift */; };
 		24F70E381D345624001FE077 /* ParseLoginHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24F70E371D345624001FE077 /* ParseLoginHelper.swift */; };
@@ -33,6 +35,9 @@
 		2467033C1D3412B10073D292 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		24866D861D41505D004AD863 /* Keys.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Keys.swift; sourceTree = "<group>"; };
 		24976D401D4153C200D02373 /* EventDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventDetailViewController.swift; sourceTree = "<group>"; };
+		24976D421D4160A000D02373 /* ChatRoomViewConroller.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatRoomViewConroller.swift; sourceTree = "<group>"; };
+		24976D441D41611700D02373 /* NewInTown-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NewInTown-Bridging-Header.h"; sourceTree = "<group>"; };
+		24976D451D41639600D02373 /* ChatRoom.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatRoom.swift; sourceTree = "<group>"; };
 		24D7278F1D343E6D0067310A /* EventCardViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventCardViewCell.swift; sourceTree = "<group>"; };
 		24D727911D3441210067310A /* NearbyEventsViewTableController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NearbyEventsViewTableController.swift; sourceTree = "<group>"; };
 		24F70E371D345624001FE077 /* ParseLoginHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParseLoginHelper.swift; sourceTree = "<group>"; };
@@ -94,8 +99,10 @@
 				2467033C1D3412B10073D292 /* Info.plist */,
 				24866D861D41505D004AD863 /* Keys.swift */,
 				24D7278F1D343E6D0067310A /* EventCardViewCell.swift */,
-				24976D401D4153C200D02373 /* EventDetailViewController.swift */,
 				24D727911D3441210067310A /* NearbyEventsViewTableController.swift */,
+				24976D401D4153C200D02373 /* EventDetailViewController.swift */,
+				24976D421D4160A000D02373 /* ChatRoomViewConroller.swift */,
+				24976D441D41611700D02373 /* NewInTown-Bridging-Header.h */,
 			);
 			path = NewInTown;
 			sourceTree = "<group>";
@@ -115,6 +122,7 @@
 			children = (
 				24F70E3C1D3558D9001FE077 /* Event.swift */,
 				243D3D191D38070000C9F72A /* Venue.swift */,
+				24976D451D41639600D02373 /* ChatRoom.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -254,8 +262,10 @@
 				24F70E3D1D3558D9001FE077 /* Event.swift in Sources */,
 				24D727901D343E6D0067310A /* EventCardViewCell.swift in Sources */,
 				24F70E381D345624001FE077 /* ParseLoginHelper.swift in Sources */,
+				24976D431D4160A000D02373 /* ChatRoomViewConroller.swift in Sources */,
 				24F70E3F1D3560AC001FE077 /* EventHelper.swift in Sources */,
 				243D3D1A1D38070000C9F72A /* Venue.swift in Sources */,
+				24976D461D41639600D02373 /* ChatRoom.swift in Sources */,
 				24F70E3A1D345654001FE077 /* ErrorHandling.swift in Sources */,
 				24976D411D4153C200D02373 /* EventDetailViewController.swift in Sources */,
 				24D727921D3441210067310A /* NearbyEventsViewTableController.swift in Sources */,

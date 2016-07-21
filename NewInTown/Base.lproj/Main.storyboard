@@ -109,7 +109,11 @@
                                                 <segue destination="F3f-Hx-J5w" kind="unwind" unwindAction="unwindToEventListViewController:" id="wpz-MS-Ftn"/>
                                             </connections>
                                         </barButtonItem>
-                                        <barButtonItem key="rightBarButtonItem" title="Item" id="bIP-V6-WxU"/>
+                                        <barButtonItem key="rightBarButtonItem" title="Item" id="bIP-V6-WxU">
+                                            <connections>
+                                                <segue destination="zNO-UR-aVh" kind="showDetail" id="wyZ-9i-RRe"/>
+                                            </connections>
+                                        </barButtonItem>
                                     </navigationItem>
                                 </items>
                                 <variation key="default">
@@ -169,12 +173,12 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gok-Iq-UJD" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="F3f-Hx-J5w" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="1251" y="288"/>
+            <point key="canvasLocation" x="1179" y="288"/>
         </scene>
-        <!--View Controller-->
+        <!--Chat Room View Controller-->
         <scene sceneID="DrP-br-Hg7">
             <objects>
-                <viewController id="zNO-UR-aVh" sceneMemberID="viewController">
+                <viewController id="zNO-UR-aVh" customClass="ChatRoomViewController" customModule="NewInTown" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="jFe-s6-XmL"/>
                         <viewControllerLayoutGuide type="bottom" id="ucK-gG-WSH"/>
@@ -187,7 +191,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mZ9-Fr-3vQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1989" y="276"/>
+            <point key="canvasLocation" x="1954" y="288"/>
         </scene>
     </scenes>
 </document>
