@@ -48,7 +48,7 @@
                                 <connections>
                                     <outlet property="eventLogoImage" destination="fmN-Yy-maA" id="osb-R8-NMh"/>
                                     <outlet property="eventNameLabel" destination="zzZ-DK-Uif" id="QNN-we-Sau"/>
-                                    <segue destination="0Oo-1Q-Sar" kind="showDetail" identifier="toEventDetailView" id="32L-j3-JTP"/>
+                                    <segue destination="0Oo-1Q-Sar" kind="showDetail" identifier="ToEventDetailView" id="32L-j3-JTP"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -111,7 +111,7 @@
                                         </barButtonItem>
                                         <barButtonItem key="rightBarButtonItem" title="Item" id="bIP-V6-WxU">
                                             <connections>
-                                                <segue destination="zNO-UR-aVh" kind="showDetail" id="wyZ-9i-RRe"/>
+                                                <segue destination="zNO-UR-aVh" kind="showDetail" identifier="ToChatRoom" id="wyZ-9i-RRe"/>
                                             </connections>
                                         </barButtonItem>
                                     </navigationItem>
