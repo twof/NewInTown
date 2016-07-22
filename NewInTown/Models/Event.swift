@@ -36,9 +36,8 @@ class Event {
             if(error != nil){
                 print(error)
             }
-            //print(venue?.name)
+            
             self.venue = venue
-            print(self.venue.name)
             completion()
         })
     }

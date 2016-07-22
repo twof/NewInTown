@@ -13,6 +13,7 @@ class ParseHelper {
     
     static func initializeChatRoom(name: String, completion: (chatroom: ChatRoom) -> Void){
         
+        
         let query = PFQuery(className: "ChatRoom")
         query.whereKey("name", equalTo: name)
         
@@ -24,11 +25,9 @@ class ParseHelper {
             
             if count > 0 {
                 query.getFirstObjectInBackgroundWithBlock({(object, error) in
-                    ParseHelper.addUserToChatRoom(PFUser.currentUser()!, name: name)
                     completion(chatroom: object as! ChatRoom)
                 })
             }else{
-                ParseHelper.addUserToChatRoom(PFUser.currentUser()!, name: name)
                 completion(chatroom: ChatRoom(name: name))
             }
         })
@@ -44,12 +43,13 @@ class ParseHelper {
                 return
             }
             
-            let chatRoomToCheck = object as! ChatRoom
-            if (chatRoomToCheck.userList.contains({$0.username == user.username})){
+            var chatRoomToCheckUserList = (object as! ChatRoom).userList
+            
+            if ((chatRoomToCheckUserList).contains({$0.objectId == user.objectId})){
                 return
             }else{
-                chatRoomToCheck.userList?.append(user)
-                object?.setValue(chatRoomToCheck.userList, forKey: "userList")
+                chatRoomToCheckUserList.append(user)
+                object?.setValue(chatRoomToCheckUserList, forKey: "userList")
                 object?.saveInBackground()
             }
         })

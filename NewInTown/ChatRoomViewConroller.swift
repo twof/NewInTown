@@ -6,6 +6,7 @@
 //  Copyright © 2016 twof. All rights reserved.
 //
 import UIKit
+import Parse
 import JSQMessagesViewController
 
 class ChatRoomViewController: JSQMessagesViewController {
@@ -23,6 +24,7 @@ class ChatRoomViewController: JSQMessagesViewController {
         
         ParseHelper.initializeChatRoom(name, completion: {(newChatRoom) in
             self.chatRoom = newChatRoom
+            ParseHelper.addUserToChatRoom(PFUser.currentUser()!, name: newChatRoom.name!)
         })
     }
     

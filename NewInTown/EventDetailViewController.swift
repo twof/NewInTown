@@ -38,11 +38,6 @@ class EventDetailViewController: UIViewController {
     func loadEventImage(urlString: String){
         Alamofire.request(.GET, urlString)
             .responseImage { response in
-                debugPrint(response)
-                
-                print(response.request)
-                print(response.response)
-                debugPrint(response.result)
                 
                 if let image = response.result.value {
                     let size = CGSize(width: self.eventImageView.frame.width, height: self.eventImageView.frame.height)

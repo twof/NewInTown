@@ -37,7 +37,6 @@ class NearbyEventsViewTableController: UITableViewController {
     }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int{
-        print(EventHelper.eventList.count)
         return EventHelper.eventList.count
     }
     
@@ -60,11 +59,6 @@ class NearbyEventsViewTableController: UITableViewController {
     func loadEventImage(urlString: String, imageViewToSet: UIImageView){
         Alamofire.request(.GET, urlString)
             .responseImage { response in
-                debugPrint(response)
-                
-                print(response.request)
-                print(response.response)
-                debugPrint(response.result)
                 
                 if let image = response.result.value {
                     let size = CGSize(width: imageViewToSet.frame.width, height: imageViewToSet.frame.height)
