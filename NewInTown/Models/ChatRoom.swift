@@ -11,7 +11,7 @@ import Parse
 class ChatRoom: PFObject, PFSubclassing {
     
     @NSManaged var name: String?
-    @NSManaged var userList: [PFUser]?
+    @NSManaged var userList: [PFUser]!
     
     
     //MARK: PFSubclassing Protocol

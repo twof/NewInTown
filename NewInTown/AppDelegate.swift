@@ -19,7 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     override init() {
         super.init()
-        
+        ChatRoom.registerSubclass()
         parseLoginHelper = ParseLoginHelper {[unowned self] user, error in
             // Initialize the ParseLoginHelper with a callback
             if let error = error {
