@@ -106,7 +106,7 @@
                                     <navigationItem title="Title" id="pis-Fd-RSl">
                                         <barButtonItem key="leftBarButtonItem" title="Item" id="f9j-q0-XJE">
                                             <connections>
-                                                <segue destination="F3f-Hx-J5w" kind="unwind" unwindAction="unwindToEventListViewController:" id="wpz-MS-Ftn"/>
+                                                <action selector="backToEventList:" destination="0Oo-1Q-Sar" id="MYC-6h-eLe"/>
                                             </connections>
                                         </barButtonItem>
                                         <barButtonItem key="rightBarButtonItem" title="Item" id="bIP-V6-WxU">
@@ -168,6 +168,7 @@
                         <outlet property="eventImageView" destination="eGn-e2-l5o" id="c8r-gw-ALh"/>
                         <outlet property="eventLocation" destination="2up-WN-cAc" id="gSt-Fv-SHx"/>
                         <outlet property="eventTitle" destination="zGi-HU-03b" id="d1h-vb-nBt"/>
+                        <segue destination="F3f-Hx-J5w" kind="unwind" identifier="ToEventListController" unwindAction="unwindToEventListViewController:" id="52z-yL-1Ve"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gok-Iq-UJD" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -188,8 +189,12 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <connections>
+                        <segue destination="0eE-B2-Jmd" kind="unwind" identifier="UnwindToEventDetailViewController" unwindAction="unwindToEventDetailViewController:" id="HmE-WU-rxy"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mZ9-Fr-3vQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="0eE-B2-Jmd" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="1954" y="288"/>
         </scene>

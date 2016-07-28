@@ -34,6 +34,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 self.window?.rootViewController!.presentViewController(tabBarController, animated:true, completion:nil)
             }
         }
+        ParseHelper.startParseListeners()
     }
     
     

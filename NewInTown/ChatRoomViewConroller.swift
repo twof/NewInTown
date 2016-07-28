@@ -10,22 +10,33 @@ import Parse
 import JSQMessagesViewController
 
 class ChatRoomViewController: JSQMessagesViewController {
-    var chatRoom: ChatRoom!
+    var name: String!
+    var chatRoom: ChatRoom! {
+        didSet{
+            ParseHelper.addNewParseListeners(chatRoom)
+        }
+    }
+    
     let incomingBubble = JSQMessagesBubbleImageFactory().incomingMessagesBubbleImageWithColor(UIColor(red: 10/255, green: 180/255, blue: 230/255, alpha: 1.0))
     let outgoingBubble = JSQMessagesBubbleImageFactory().outgoingMessagesBubbleImageWithColor(UIColor.lightGrayColor())
-    var messages = [JSQMessage]()
-    var name: String!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        self.setup()
-        self.addDemoMessages()
-        
         ParseHelper.initializeChatRoom(name, completion: {(newChatRoom) in
             self.chatRoom = newChatRoom
             ParseHelper.addUserToChatRoom(PFUser.currentUser()!, name: newChatRoom.name!)
+            let navBar: UINavigationBar = UINavigationBar(frame: CGRect(x: 0, y: 0, width: UIScreen.mainScreen().bounds.width, height: 44))
+            self.view.addSubview(navBar);
+            let navItem = UINavigationItem(title: self.chatRoom.name!);
+            let doneItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Done, target: nil, action: #selector(ChatRoomViewController.backToDetailViewController));
+            navItem.rightBarButtonItem = doneItem;
+            navBar.setItems([navItem], animated: false);
         })
+        self.setup()
+    }
+    
+    override func viewWillDisappear(animated: Bool) {
+        ParseHelper.removeParseListener(self.chatRoom)
     }
     
     override func didReceiveMemoryWarning() {
@@ -40,19 +51,9 @@ class ChatRoomViewController: JSQMessagesViewController {
 
 //MARK - Setup
 extension ChatRoomViewController {
-    func addDemoMessages() {
-        for i in 1...10 {
-            let sender = (i%2 == 0) ? "Server" : self.senderId
-            let messageContent = "Message nr. \(i)"
-            let message = JSQMessage(senderId: sender, displayName: sender, text: messageContent)
-            self.messages += [message]
-        }
-        self.reloadMessagesView()
-    }
-    
     func setup() {
-        self.senderId = UIDevice.currentDevice().identifierForVendor?.UUIDString
-        self.senderDisplayName = UIDevice.currentDevice().identifierForVendor?.UUIDString
+        self.senderId = PFUser.currentUser()?.objectId
+        self.senderDisplayName = PFUser.currentUser()?.username
     }
 }
 
@@ -60,41 +61,52 @@ extension ChatRoomViewController {
 extension ChatRoomViewController {
     
     override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return self.messages.count
+        let isNil = self.chatRoom == nil
+        return isNil ? 0 : self.chatRoom.messageList.count
     }
     
     override func collectionView(collectionView: JSQMessagesCollectionView!, messageDataForItemAtIndexPath indexPath: NSIndexPath!) -> JSQMessageData! {
-        let data = self.messages[indexPath.row]
+        let data = self.chatRoom.messageList[indexPath.row]
         return data
     }
     
     override func collectionView(collectionView: JSQMessagesCollectionView!, didDeleteMessageAtIndexPath indexPath: NSIndexPath!) {
-        self.messages.removeAtIndex(indexPath.row)
+        self.chatRoom.messageList.removeAtIndex(indexPath.row)
     }
     
     override func collectionView(collectionView: JSQMessagesCollectionView!, messageBubbleImageDataForItemAtIndexPath indexPath: NSIndexPath!) -> JSQMessageBubbleImageDataSource! {
-        let data = messages[indexPath.row]
-        switch(data.senderId) {
-        case self.senderId:
-            return self.outgoingBubble
-        default:
-            return self.incomingBubble
-        }
+        
+        let data = self.chatRoom.messageList[indexPath.row]
+        print(data.sender)
+        print(PFUser.currentUser())
+        switch(data.sender.objectId!) {
+            case (PFUser.currentUser()?.objectId)!:
+                return self.outgoingBubble
+            default:
+                return self.incomingBubble
+            }
     }
     
     override func collectionView(collectionView: JSQMessagesCollectionView!, avatarImageDataForItemAtIndexPath indexPath: NSIndexPath!) -> JSQMessageAvatarImageDataSource! {
         return nil
     }
+    
+    func backToDetailViewController(){
+        self.performSegueWithIdentifier("UnwindToEventDetailViewController", sender: self)
+    }
 }
 
 extension ChatRoomViewController {
     override func didPressSendButton(button: UIButton!, withMessageText text: String!, senderId: String!, senderDisplayName: String!, date: NSDate!) {
-        let message = JSQMessage(senderId: senderId, senderDisplayName: senderDisplayName, date: date, text: text)
-        self.messages += [message]
+        self.chatRoom.messageList.append(Message(body: text, sender: PFUser.currentUser()!, room: chatRoom))
         self.finishSendingMessage()
     }
     
     override func didPressAccessoryButton(sender: UIButton!) {
         
     }
+}
+
+func ==(left: PFUser, right: PFUser) -> Bool {
+    return left.objectId == right.objectId
 }

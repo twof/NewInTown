@@ -17,6 +17,8 @@
 		24976D431D4160A000D02373 /* ChatRoomViewConroller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24976D421D4160A000D02373 /* ChatRoomViewConroller.swift */; };
 		24976D461D41639600D02373 /* ChatRoom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24976D451D41639600D02373 /* ChatRoom.swift */; };
 		24976D481D41656C00D02373 /* ParseHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24976D471D41656C00D02373 /* ParseHelper.swift */; };
+		24C0C5901D42BA69004D57E1 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24C0C58F1D42BA69004D57E1 /* Message.swift */; };
+		24C0C5921D42BAC4004D57E1 /* MessageHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24C0C5911D42BAC4004D57E1 /* MessageHelper.swift */; };
 		24D727901D343E6D0067310A /* EventCardViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D7278F1D343E6D0067310A /* EventCardViewCell.swift */; };
 		24D727921D3441210067310A /* NearbyEventsViewTableController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D727911D3441210067310A /* NearbyEventsViewTableController.swift */; };
 		24F70E381D345624001FE077 /* ParseLoginHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24F70E371D345624001FE077 /* ParseLoginHelper.swift */; };
@@ -40,6 +42,8 @@
 		24976D441D41611700D02373 /* NewInTown-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NewInTown-Bridging-Header.h"; sourceTree = "<group>"; };
 		24976D451D41639600D02373 /* ChatRoom.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatRoom.swift; sourceTree = "<group>"; };
 		24976D471D41656C00D02373 /* ParseHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParseHelper.swift; sourceTree = "<group>"; };
+		24C0C58F1D42BA69004D57E1 /* Message.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
+		24C0C5911D42BAC4004D57E1 /* MessageHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageHelper.swift; sourceTree = "<group>"; };
 		24D7278F1D343E6D0067310A /* EventCardViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventCardViewCell.swift; sourceTree = "<group>"; };
 		24D727911D3441210067310A /* NearbyEventsViewTableController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NearbyEventsViewTableController.swift; sourceTree = "<group>"; };
 		24F70E371D345624001FE077 /* ParseLoginHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParseLoginHelper.swift; sourceTree = "<group>"; };
@@ -116,6 +120,7 @@
 				24F70E391D345654001FE077 /* ErrorHandling.swift */,
 				24F70E3E1D3560AC001FE077 /* EventHelper.swift */,
 				24976D471D41656C00D02373 /* ParseHelper.swift */,
+				24C0C5911D42BAC4004D57E1 /* MessageHelper.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -126,6 +131,7 @@
 				24F70E3C1D3558D9001FE077 /* Event.swift */,
 				243D3D191D38070000C9F72A /* Venue.swift */,
 				24976D451D41639600D02373 /* ChatRoom.swift */,
+				24C0C58F1D42BA69004D57E1 /* Message.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -266,6 +272,7 @@
 				24D727901D343E6D0067310A /* EventCardViewCell.swift in Sources */,
 				24F70E381D345624001FE077 /* ParseLoginHelper.swift in Sources */,
 				24976D431D4160A000D02373 /* ChatRoomViewConroller.swift in Sources */,
+				24C0C5921D42BAC4004D57E1 /* MessageHelper.swift in Sources */,
 				24F70E3F1D3560AC001FE077 /* EventHelper.swift in Sources */,
 				243D3D1A1D38070000C9F72A /* Venue.swift in Sources */,
 				24976D461D41639600D02373 /* ChatRoom.swift in Sources */,
@@ -275,6 +282,7 @@
 				246703311D3412B10073D292 /* AppDelegate.swift in Sources */,
 				24976D481D41656C00D02373 /* ParseHelper.swift in Sources */,
 				24866D871D41505D004AD863 /* Keys.swift in Sources */,
+				24C0C5901D42BA69004D57E1 /* Message.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -337,7 +345,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -376,7 +384,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
@@ -388,10 +396,14 @@
 			baseConfigurationReference = 473A9018C07610362315985D /* Pods-NewInTown.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = NewInTown/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.twof.NewInTown;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -400,10 +412,14 @@
 			baseConfigurationReference = BB05BF38388466B2CD301A66 /* Pods-NewInTown.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = NewInTown/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.twof.NewInTown;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

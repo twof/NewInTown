@@ -11,6 +11,7 @@ PODS:
     - Bolts/Tasks
   - Bolts/Tasks (1.8.4)
   - ConvenienceKit (0.4.0)
+  - CryptoSwift (0.5.1)
   - FBSDKCoreKit (4.14.0):
     - Bolts (~> 1.7)
   - FBSDKLoginKit (4.14.0):
@@ -37,6 +38,7 @@ DEPENDENCIES:
   - AlamofireImage
   - AlamofireNetworkActivityIndicator
   - ConvenienceKit
+  - CryptoSwift
   - FBSDKCoreKit
   - JSQMessagesViewController
   - Material
@@ -51,6 +53,7 @@ SPEC CHECKSUMS:
   AlamofireNetworkActivityIndicator: 49a6e39afb947136f7b1872bae2d684957c26697
   Bolts: 8a7995239dbe724f9cba2248b766d48b7ebdd322
   ConvenienceKit: ba1ad8797897dc0d011676e961a2f3e9b270c841
+  CryptoSwift: df42dda18baf6c76347a94e227dbcc0a341304bd
   FBSDKCoreKit: 6e020b5db0b5bd1e01f5fb0902131befd129a502
   FBSDKLoginKit: da563567a108050ef83739c8c8c001ee9e25fa13
   JSQMessagesViewController: 39fed975e3c9f8eba7292071e29eeb541d105e66
@@ -61,6 +64,6 @@ SPEC CHECKSUMS:
   ParseUI: af2eba584799da4a9fbdac0e178662d7438b502e
   SwiftyJSON: 04ccea08915aa0109039157c7974cf0298da292a
 
-PODFILE CHECKSUM: f12d99bef01828c808c12fb2e100a47a6d9f8332
+PODFILE CHECKSUM: 637a3c0249bead2bcfd37a542810e16d48f2945b
 
 COCOAPODS: 1.0.1

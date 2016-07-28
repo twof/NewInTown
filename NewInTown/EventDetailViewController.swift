@@ -47,6 +47,12 @@ class EventDetailViewController: UIViewController {
         }
     }
     
+    @IBAction func backToEventList(sender: UIBarButtonItem) {
+        self.performSegueWithIdentifier("ToEventListController", sender: self)
+    }
+    
+    @IBAction func unwindToEventDetailViewController(segue: UIStoryboardSegue) {}
+    
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "ToChatRoom" {
             let vc = segue.destinationViewController as! ChatRoomViewController

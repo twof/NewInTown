@@ -10,6 +10,36 @@ import Foundation
 import Parse
 
 class ParseHelper {
+    static private var runningParseListeners = [NSBlockOperation]()
+    static private var parseListenerQueue = NSOperationQueue()
+    
+    static func startParseListeners(){
+        while true {
+            for operation in runningParseListeners {
+                parseListenerQueue.addOperation(operation)
+            }
+        }
+    }
+    
+    static func addNewParseListeners(chatRoom: ChatRoom){
+        let operation = NSBlockOperation(block: {
+            MessageHelper.retrieveMessagesForRoom(chatRoom, completion: {(messages) in
+                chatRoom.messageList += messages as [Message]
+                
+                chatRoom.lastMessageSentDate = chatRoom.messageList[chatRoom.messageList.count-1].createdAt!
+            })
+        })
+        operation.name = chatRoom.name
+        runningParseListeners.append(operation)
+    }
+    
+    static func removeParseListener(chatRoom: ChatRoom){
+        for operation in runningParseListeners {
+            if operation.name == chatRoom.name {
+                runningParseListeners.removeAtIndex(runningParseListeners.indexOf(operation)!)
+            }
+        }
+    }
     
     static func initializeChatRoom(name: String, completion: (chatroom: ChatRoom) -> Void){
         

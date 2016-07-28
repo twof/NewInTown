@@ -8,10 +8,13 @@
 
 import Foundation
 import Parse
+
 class ChatRoom: PFObject, PFSubclassing {
     
     @NSManaged var name: String?
     @NSManaged var userList: [PFUser]!
+    var messageList = [Message]()
+    var lastMessageSentDate = NSDate.init(timeIntervalSince1970: 0)
     
     
     //MARK: PFSubclassing Protocol
@@ -30,6 +33,7 @@ class ChatRoom: PFObject, PFSubclassing {
         super.init()
         self.name = name
         userList = []
+        messageList = []
         uploadChatRoom()
     }
     

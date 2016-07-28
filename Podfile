@@ -17,4 +17,5 @@ target 'NewInTown' do
   pod 'AlamofireImage'
   pod 'AlamofireNetworkActivityIndicator'
   pod 'JSQMessagesViewController'
+  pod 'CryptoSwift'
 end
