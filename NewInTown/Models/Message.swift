@@ -10,27 +10,13 @@ import Foundation
 import JSQMessagesViewController
 import CryptoSwift
 
-class Message: {
+class Message {
     
-    @NSManaged var body: String?
-    @NSManaged var sender: PFUser!
-    @NSManaged var room: ChatRoom!
+    var body: String?
+    var sender: User!
+    var room: ChatRoom!
     
-    
-    
-    //MARK: PFSubclassing Protocol
-    
-    // 3
-    static func parseClassName() -> String {
-        return "Message"
-    }
-    
-    // 4
-    override init () {
-        super.init()
-    }
-    
-    init(body: String, sender: PFUser, room: ChatRoom) {
+    init(body: String, sender: User, room: ChatRoom) {
         super.init()
         self.body = body
         self.sender = sender

@@ -24,7 +24,8 @@ class FirebaseHelper {
         
     }
     
-    
-    
+    static func sendMessageToChatRoom(message: Message, chatRoom: ChatRoom){
+        
+    }
     
 }
