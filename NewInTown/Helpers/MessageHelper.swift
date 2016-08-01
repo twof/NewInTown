@@ -9,11 +9,6 @@
 import Foundation
 
 class MessageHelper {
-    static func initializeMessage(body: String, chatRoom: ChatRoom, sender: PFUser, completion: (message: Message) -> Void) {
-        
-        
-    }
-    
     static func retrieveMessagesForRoom(chatRoom: ChatRoom, completion: (messages: [Message]) -> Void){
         let query = PFQuery(className: "Message")
         query.whereKey("room", equalTo: chatRoom)

@@ -8,10 +8,10 @@
 
 import Foundation
 
-class ChatRoom: PFObject, PFSubclassing {
+class ChatRoom {
     
-    @NSManaged var name: String?
-    @NSManaged var userList: [PFUser]!
+    var name: String?
+    var userList: [User]!
     var messageList = [Message]()
     var lastMessageSentDate = NSDate.init(timeIntervalSince1970: 0)
     
