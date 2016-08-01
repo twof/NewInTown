@@ -85,7 +85,6 @@ extension Message: JSQMessageData{
         let index = md5hash.endIndex.advancedBy(-24)
         let shortermd5hash = md5hash.substringToIndex(index)
         let intToReturn = UInt(shortermd5hash, radix: 16)
-        print(UInt(shortermd5hash, radix: 16))
         return intToReturn!
     }
 }

@@ -34,7 +34,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 self.window?.rootViewController!.presentViewController(tabBarController, animated:true, completion:nil)
             }
         }
-        ParseHelper.startParseListeners()
+        
     }
     
     
@@ -85,9 +85,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.window?.rootViewController = startViewController;
         self.window?.makeKeyAndVisible()
         
-
+        ParseHelper.startParseListeners()
         
         return FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
+        
     }
     
     func applicationWillResignActive(application: UIApplication) {

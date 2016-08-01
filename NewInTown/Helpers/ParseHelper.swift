@@ -11,21 +11,28 @@ import Parse
 
 class ParseHelper {
     static private var runningParseListeners = [NSBlockOperation]()
-    static private var parseListenerQueue = NSOperationQueue()
+    //static private var parseListenerQueue = NSOperationQueue()
+    static private var queueCheckQueue = NSOperationQueue()
     
     static func startParseListeners(){
-        while true {
-            for operation in runningParseListeners {
-                parseListenerQueue.addOperation(operation)
+        let operation = NSBlockOperation { 
+            while true {
+                for operation in runningParseListeners {
+                    
+                    if (operation.ready || operation.finished){
+                        operation.start()
+                    }
+                }
             }
         }
+        queueCheckQueue.addOperation(operation)
     }
     
     static func addNewParseListeners(chatRoom: ChatRoom){
         let operation = NSBlockOperation(block: {
             MessageHelper.retrieveMessagesForRoom(chatRoom, completion: {(messages) in
                 chatRoom.messageList += messages as [Message]
-                
+                print("running")
                 chatRoom.lastMessageSentDate = chatRoom.messageList[chatRoom.messageList.count-1].createdAt!
             })
         })

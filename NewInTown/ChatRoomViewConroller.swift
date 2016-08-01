@@ -77,8 +77,6 @@ extension ChatRoomViewController {
     override func collectionView(collectionView: JSQMessagesCollectionView!, messageBubbleImageDataForItemAtIndexPath indexPath: NSIndexPath!) -> JSQMessageBubbleImageDataSource! {
         
         let data = self.chatRoom.messageList[indexPath.row]
-        print(data.sender)
-        print(PFUser.currentUser())
         switch(data.sender.objectId!) {
             case (PFUser.currentUser()?.objectId)!:
                 return self.outgoingBubble
