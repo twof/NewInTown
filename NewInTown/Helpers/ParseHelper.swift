@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import Parse
 
 class ParseHelper {
     static private var runningParseListeners = [NSBlockOperation]()

@@ -6,6 +6,39 @@
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
     <scenes>
+        <!--Login View Controller-->
+        <scene sceneID="MXG-do-oCR">
+            <objects>
+                <viewController id="91d-PQ-IVx" customClass="LoginViewController" customModule="NewInTown" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Arw-nS-RW2"/>
+                        <viewControllerLayoutGuide type="bottom" id="c2O-5o-ltS"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="KXP-hy-YJQ">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mqL-6Z-4Pg">
+                                <rect key="frame" x="277" y="285" width="46" height="30"/>
+                                <state key="normal" title="Button"/>
+                                <connections>
+                                    <action selector="didTouchToLogin:" destination="91d-PQ-IVx" eventType="touchUpInside" id="6uu-Vy-ZCv"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="mqL-6Z-4Pg" secondAttribute="trailing" constant="257" id="11y-3e-cNW"/>
+                            <constraint firstItem="mqL-6Z-4Pg" firstAttribute="leading" secondItem="KXP-hy-YJQ" secondAttribute="leadingMargin" constant="257" id="ILt-Qa-h34"/>
+                            <constraint firstItem="mqL-6Z-4Pg" firstAttribute="top" secondItem="Arw-nS-RW2" secondAttribute="bottom" constant="265" id="QuB-EQ-ssV"/>
+                            <constraint firstItem="c2O-5o-ltS" firstAttribute="top" secondItem="mqL-6Z-4Pg" secondAttribute="bottom" constant="285" id="hvc-2B-N8J"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="8ya-IM-pEL" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-247" y="288"/>
+        </scene>
         <!--Nearby Events View Table Controller-->
         <scene sceneID="qAu-41-EcJ">
             <objects>

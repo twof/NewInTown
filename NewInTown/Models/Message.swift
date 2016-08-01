@@ -8,10 +8,9 @@
 
 import Foundation
 import JSQMessagesViewController
-import Parse
 import CryptoSwift
 
-class Message: PFObject, PFSubclassing {
+class Message: {
     
     @NSManaged var body: String?
     @NSManaged var sender: PFUser!

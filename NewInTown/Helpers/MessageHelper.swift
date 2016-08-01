@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import Parse
 
 class MessageHelper {
     static func initializeMessage(body: String, chatRoom: ChatRoom, sender: PFUser, completion: (message: Message) -> Void) {
