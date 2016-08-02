@@ -15,9 +15,9 @@ class Message {
     var body: String?
     var sender: User!
     var room: ChatRoom!
+    var uid: String!
     
     init(body: String, sender: User, room: ChatRoom) {
-        super.init()
         self.body = body
         self.sender = sender
         self.room = room
@@ -25,16 +25,8 @@ class Message {
         uploadMessage()
     }
     
-    override class func initialize() {
-        var onceToken : dispatch_once_t = 0;
-        dispatch_once(&onceToken) {
-            // inform Parse about this subclass
-            self.registerSubclass()
-        }
-    }
-    
     func uploadMessage() {
-        self.saveInBackground()
+        FirebaseHelper.uploadMessage(self)
     }
 }
 
