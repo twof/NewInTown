@@ -9,9 +9,6 @@
 import Foundation
 import Firebase
 
-class User {
-    var name: String!
-    var password: String!
-    
+class User: FIRUser {
     
 }

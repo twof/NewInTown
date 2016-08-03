@@ -7,7 +7,7 @@
 //
 
 import Foundation
-import FirebaseDatabase
+import Firebase
 
 class FirebaseHelper {
     static private var ref: FIRDatabaseReference!
@@ -31,16 +31,26 @@ class FirebaseHelper {
         })
     }
     
-    static func addUserToChatRoom(user: User, chatRoom: ChatRoom) {
-        chatRoom.userList.append(user)
-        let newUserRef
-        self.ref.child(Constants.FirebaseCatagories.CHAT_ROOMS).child(chatRoom.name!).child(Constants.FirebaseChatRoom.USER_LIST).setValue(chatRoom.userList)
+    static func addSelfToChatRoom(chatRoom: ChatRoom) {
+        chatRoom.userList.append(FIRAuth.auth()?.currentUser as! User)
+        let newUserRef = self.ref.child(Constants.FirebaseCatagories.CHAT_ROOMS).child(chatRoom.uid as String)
+        
+        self.ref.child(Constants.FirebaseCatagories.CHAT_ROOMS).child(chatRoom.name! as String).child(Constants.FirebaseChatRoom.USER_LIST).setValue(chatRoom.userList) //TODO: probably can't append an entire userlist
     }
     
     static func uploadMessage(message: Message){
         let newMessageRef = self.ref.child(Constants.FirebaseCatagories.MESSAGES).childByAutoId()
         
         newMessageRef.setValue(message)
+    }
+    
+    static func configureDatabase() {
+        self.ref = FIRDatabase.database().reference()
+        // Listen for new messages in the Firebase database
+        _refHandle = self.ref.child("messages").observeEventType(.ChildAdded, withBlock: { (snapshot) -> Void in
+            self.messages.append(snapshot)
+            self.clientTable.insertRowsAtIndexPaths([NSIndexPath(forRow: self.messages.count-1, inSection: 0)], withRowAnimation: .Automatic)
+        })
     }
     
 }

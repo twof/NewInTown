@@ -10,14 +10,16 @@ import Foundation
 import JSQMessagesViewController
 import CryptoSwift
 
-class Message {
+class Message: NSObject {
     
-    var body: String?
+    var body: NSString?
     var sender: User!
     var room: ChatRoom!
-    var uid: String!
+    var createdAt: NSDate!
+    var uid: NSString!
     
     init(body: String, sender: User, room: ChatRoom) {
+        super.init()
         self.body = body
         self.sender = sender
         self.room = room
@@ -31,33 +33,28 @@ class Message {
 }
 
 extension Message: JSQMessageData{
-    func senderId() -> String! {
-        return sender.objectId
+    @objc func senderId() -> String! {
+        return sender.uid as String
     }
     
-    func senderDisplayName() -> String! {
-        do{
-            return try sender.fetchIfNeeded().username
-        }catch{
-            print(error)
-            return ""
-        }
+    @objc func senderDisplayName() -> String! {
+        return sender.name as String
     }
     
-    func date() -> NSDate! {
+    @objc func date() -> NSDate! {
         return self.createdAt
     }
     
-    func isMediaMessage() -> Bool {
+    @objc func isMediaMessage() -> Bool {
         return false
     }
     
-    func text() -> String! {
-        return body
+    @objc func text() -> String! {
+        return body as! String
     }
     
-    func messageHash() -> UInt{
-        let hashStringSeed: String = body!+sender.objectId!+room.objectId!
+    @objc func messageHash() -> UInt{
+        let hashStringSeed: String = (body! as String)+(sender.uid! as String)+(room.uid! as String)
         let md5hash = hashStringSeed.md5().uppercaseString
         let index = md5hash.endIndex.advancedBy(-24)
         let shortermd5hash = md5hash.substringToIndex(index)

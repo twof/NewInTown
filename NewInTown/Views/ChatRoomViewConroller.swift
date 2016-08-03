@@ -21,15 +21,19 @@ class ChatRoomViewController: JSQMessagesViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        ParseHelper.initializeChatRoom(name, completion: {(newChatRoom) in
+        FirebaseHelper.initializeChatRoom(name, completion: {(newChatRoom) in
             self.chatRoom = newChatRoom
-            ParseHelper.addUserToChatRoom(PFUser.currentUser()!, name: newChatRoom.name!)
+            FirebaseHelper.addSelfToChatRoom(self.chatRoom)
+            
+            
+            //Adding a nav bar
             let navBar: UINavigationBar = UINavigationBar(frame: CGRect(x: 0, y: 0, width: UIScreen.mainScreen().bounds.width, height: 44))
             self.view.addSubview(navBar);
-            let navItem = UINavigationItem(title: self.chatRoom.name!);
+            let navItem = UINavigationItem(title: self.chatRoom.name! as String);
             let doneItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Done, target: nil, action: #selector(ChatRoomViewController.backToDetailViewController));
             navItem.rightBarButtonItem = doneItem;
             navBar.setItems([navItem], animated: false);
+            
         })
         self.setup()
     }

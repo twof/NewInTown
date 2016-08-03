@@ -13,7 +13,6 @@
 		246703381D3412B10073D292 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 246703371D3412B10073D292 /* Assets.xcassets */; };
 		2467033B1D3412B10073D292 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 246703391D3412B10073D292 /* LaunchScreen.storyboard */; };
 		24976D461D41639600D02373 /* ChatRoom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24976D451D41639600D02373 /* ChatRoom.swift */; };
-		24976D481D41656C00D02373 /* ParseHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24976D471D41656C00D02373 /* ParseHelper.swift */; };
 		24B3972F1D4FCF350006EEE6 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 24B3972E1D4FCF350006EEE6 /* GoogleService-Info.plist */; };
 		24B8724F1D4FFA75006C1161 /* FirebaseHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24B8724E1D4FFA75006C1161 /* FirebaseHelper.swift */; };
 		24B872511D4FFC75006C1161 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24B872501D4FFC75006C1161 /* User.swift */; };
@@ -25,7 +24,6 @@
 		24B872601D4FFE8E006C1161 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24B8725B1D4FFE8E006C1161 /* LoginViewController.swift */; };
 		24B872611D4FFE8E006C1161 /* NearbyEventsViewTableController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24B8725C1D4FFE8E006C1161 /* NearbyEventsViewTableController.swift */; };
 		24C0C5901D42BA69004D57E1 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24C0C58F1D42BA69004D57E1 /* Message.swift */; };
-		24C0C5921D42BAC4004D57E1 /* MessageHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24C0C5911D42BAC4004D57E1 /* MessageHelper.swift */; };
 		24F70E3A1D345654001FE077 /* ErrorHandling.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24F70E391D345654001FE077 /* ErrorHandling.swift */; };
 		24F70E3D1D3558D9001FE077 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24F70E3C1D3558D9001FE077 /* Event.swift */; };
 		24F70E3F1D3560AC001FE077 /* EventHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24F70E3E1D3560AC001FE077 /* EventHelper.swift */; };
@@ -42,7 +40,6 @@
 		2467033C1D3412B10073D292 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = ../Info.plist; sourceTree = "<group>"; };
 		24976D441D41611700D02373 /* NewInTown-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NewInTown-Bridging-Header.h"; sourceTree = "<group>"; };
 		24976D451D41639600D02373 /* ChatRoom.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatRoom.swift; sourceTree = "<group>"; };
-		24976D471D41656C00D02373 /* ParseHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParseHelper.swift; sourceTree = "<group>"; };
 		24B3972E1D4FCF350006EEE6 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../GoogleService-Info.plist"; sourceTree = "<group>"; };
 		24B8724E1D4FFA75006C1161 /* FirebaseHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirebaseHelper.swift; sourceTree = "<group>"; };
 		24B872501D4FFC75006C1161 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -54,7 +51,6 @@
 		24B8725B1D4FFE8E006C1161 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		24B8725C1D4FFE8E006C1161 /* NearbyEventsViewTableController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NearbyEventsViewTableController.swift; sourceTree = "<group>"; };
 		24C0C58F1D42BA69004D57E1 /* Message.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
-		24C0C5911D42BAC4004D57E1 /* MessageHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageHelper.swift; sourceTree = "<group>"; };
 		24F70E391D345654001FE077 /* ErrorHandling.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ErrorHandling.swift; sourceTree = "<group>"; };
 		24F70E3C1D3558D9001FE077 /* Event.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
 		24F70E3E1D3560AC001FE077 /* EventHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventHelper.swift; sourceTree = "<group>"; };
@@ -130,11 +126,11 @@
 		24B872571D4FFE4B006C1161 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				24B872581D4FFE8E006C1161 /* ChatRoomViewConroller.swift */,
-				24B872591D4FFE8E006C1161 /* EventCardViewCell.swift */,
-				24B8725A1D4FFE8E006C1161 /* EventDetailViewController.swift */,
 				24B8725B1D4FFE8E006C1161 /* LoginViewController.swift */,
+				24B872591D4FFE8E006C1161 /* EventCardViewCell.swift */,
 				24B8725C1D4FFE8E006C1161 /* NearbyEventsViewTableController.swift */,
+				24B8725A1D4FFE8E006C1161 /* EventDetailViewController.swift */,
+				24B872581D4FFE8E006C1161 /* ChatRoomViewConroller.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -153,8 +149,6 @@
 			children = (
 				24F70E391D345654001FE077 /* ErrorHandling.swift */,
 				24F70E3E1D3560AC001FE077 /* EventHelper.swift */,
-				24976D471D41656C00D02373 /* ParseHelper.swift */,
-				24C0C5911D42BAC4004D57E1 /* MessageHelper.swift */,
 				24B8724E1D4FFA75006C1161 /* FirebaseHelper.swift */,
 			);
 			path = Helpers;
@@ -307,7 +301,6 @@
 			files = (
 				24B8724F1D4FFA75006C1161 /* FirebaseHelper.swift in Sources */,
 				24F70E3D1D3558D9001FE077 /* Event.swift in Sources */,
-				24C0C5921D42BAC4004D57E1 /* MessageHelper.swift in Sources */,
 				24B872561D4FFE26006C1161 /* Keys.swift in Sources */,
 				24F70E3F1D3560AC001FE077 /* EventHelper.swift in Sources */,
 				24B872511D4FFC75006C1161 /* User.swift in Sources */,
@@ -319,7 +312,6 @@
 				24B8725F1D4FFE8E006C1161 /* EventDetailViewController.swift in Sources */,
 				24B8725E1D4FFE8E006C1161 /* EventCardViewCell.swift in Sources */,
 				246703311D3412B10073D292 /* AppDelegate.swift in Sources */,
-				24976D481D41656C00D02373 /* ParseHelper.swift in Sources */,
 				24C0C5901D42BA69004D57E1 /* Message.swift in Sources */,
 				24B8725D1D4FFE8E006C1161 /* ChatRoomViewConroller.swift in Sources */,
 				24B872541D4FFDE4006C1161 /* Constants.swift in Sources */,

@@ -16,4 +16,6 @@ target 'NewInTown' do
   pod 'JSQMessagesViewController'
   pod 'CryptoSwift'
   pod 'Firebase/Database'
+  pod 'FirebaseAuth'
+  pod 'Firebase/Auth'
 end
