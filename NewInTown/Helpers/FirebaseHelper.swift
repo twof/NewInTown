@@ -7,11 +7,13 @@
 //
 
 import Foundation
+import UIKit
 import FirebaseDatabase
 import FirebaseAuth
 
 class FirebaseHelper {
     static private var ref: FIRDatabaseReference!
+    static private var _refHandle: FIRDatabaseHandle!
     
     static func getMessagesForRoom(chatroom: ChatRoom){
         self.ref.child(Constants.FirebaseCatagories.MESSAGES).queryOrderedByChild(Constants.FirebaseMessage.ROOM).queryEqualToValue(chatroom.name).observeSingleEventOfType(.Value, withBlock: {(snapshot) in
@@ -45,12 +47,12 @@ class FirebaseHelper {
         newMessageRef.setValue(message)
     }
     
-    static func configureDatabase() {
+    static func configureDatabaseForRoom(chatRoom: ChatRoom) {
         self.ref = FIRDatabase.database().reference()
         // Listen for new messages in the Firebase database
-        _refHandle = self.ref.child("messages").observeEventType(.ChildAdded, withBlock: { (snapshot) -> Void in
-            self.messages.append(snapshot)
-            self.clientTable.insertRowsAtIndexPaths([NSIndexPath(forRow: self.messages.count-1, inSection: 0)], withRowAnimation: .Automatic)
+        _refHandle = self.ref.child(Constants.FirebaseCatagories.MESSAGES).queryOrderedByChild(Constants.FirebaseMessage.ROOM).queryEqualToValue(chatRoom.uid).observeEventType(.ChildAdded, withBlock: { (snapshot) -> Void in
+            
+            chatRoom.messageList.append(snapshot.value as! Message)
         })
     }
     
@@ -58,4 +60,32 @@ class FirebaseHelper {
         return FIRAuth.auth()?.currentUser as! User
     }
     
+    static func signInWithEmail(email: String, password: String, sender: UIViewController){
+        FIRAuth.auth()?.signInWithEmail(email, password: password) { (user, error) in
+            if let error = error {
+                print(error.localizedDescription)
+                return
+            }
+            self.signedIn(user!, sender: sender)
+        }
+    }
+    
+    static func createNewUserWithEmail(email: String, password: String){
+        FIRAuth.auth()?.createUserWithEmail(email, password: password) { (user, error) in
+            if let error = error {
+                print(error.localizedDescription)
+                return
+            }
+            self.setDisplayName(user!)
+        }
+    }
+    
+    private static func signedIn(user: FIRUser?, sender: UIViewController) {
+        
+        AppState.sharedInstance.displayName = user?.displayName ?? user?.email
+        AppState.sharedInstance.photoUrl = user?.photoURL
+        AppState.sharedInstance.signedIn = true
+        
+        sender.performSegueWithIdentifier("ToEventsList", sender: sender)
+    }
 }

@@ -25,7 +25,16 @@ class LoginViewController: UIViewController {
     }
     
     @IBAction func didTouchToLogin(sender: AnyObject?){
-        
+        // Sign In with credentials.
+        let email = "fabiobean2@gmail.com"
+        let password = "password"
+        FirebaseHelper.signInWithEmail(email, password: password)
+    }
+    
+    @IBAction func didTouchSignUp(sender: AnyObject?){
+        let email = "fabiobean2@gmail.com"
+        let password = "password"
+        FirebaseHelper.createNewUserWithEmail(email, password: password)
     }
 
     /*

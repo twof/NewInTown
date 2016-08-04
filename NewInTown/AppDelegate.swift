@@ -17,11 +17,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     override init() {
         super.init()
-    }
+    } 
     
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        // Override point for customization after application launch.
-        // Set up the Parse SDK
         FIRApp.configure()
         return true
     }
@@ -47,11 +45,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     //MARK: Facebook Integration
     
     func applicationDidBecomeActive(application: UIApplication) {
-        FBSDKAppEvents.activateApp()
+        //FBSDKAppEvents.activateApp()
     }
     
     func application(application: UIApplication, openURL url: NSURL, sourceApplication: String?, annotation: AnyObject) -> Bool {
-        return FBSDKApplicationDelegate.sharedInstance().application(application, openURL: url, sourceApplication: sourceApplication, annotation: annotation)
+        //return FBSDKApplicationDelegate.sharedInstance().application(application, openURL: url, sourceApplication: sourceApplication, annotation: annotation)
+        return true
     }
 
 }

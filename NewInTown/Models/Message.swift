@@ -38,7 +38,7 @@ extension Message: JSQMessageData{
     }
     
     @objc func senderDisplayName() -> String! {
-        return sender.name as String
+        return sender.displayName! as String
     }
     
     @objc func date() -> NSDate! {
@@ -54,7 +54,7 @@ extension Message: JSQMessageData{
     }
     
     @objc func messageHash() -> UInt{
-        let hashStringSeed: String = (body! as String)+(sender.uid! as String)+(room.uid! as String)
+        let hashStringSeed: String = (body! as String)+(sender.uid)+(room.uid! as String)
         let md5hash = hashStringSeed.md5().uppercaseString
         let index = md5hash.endIndex.advancedBy(-24)
         let shortermd5hash = md5hash.substringToIndex(index)

@@ -12,7 +12,7 @@ class ChatRoomViewController: JSQMessagesViewController {
     var name: String!
     var chatRoom: ChatRoom! {
         didSet{
-            ParseHelper.addNewParseListeners(chatRoom)
+            //TODO: Add observer for the chatroom
         }
     }
     
@@ -39,7 +39,7 @@ class ChatRoomViewController: JSQMessagesViewController {
     }
     
     override func viewWillDisappear(animated: Bool) {
-        ParseHelper.removeParseListener(self.chatRoom)
+        //TODO: Remove Firebase observers
     }
     
     override func didReceiveMemoryWarning() {
@@ -55,8 +55,8 @@ class ChatRoomViewController: JSQMessagesViewController {
 //MARK - Setup
 extension ChatRoomViewController {
     func setup() {
-        self.senderId = PFUser.currentUser()?.objectId
-        self.senderDisplayName = PFUser.currentUser()?.username
+        self.senderId = FirebaseHelper.getCurrentUser().uid
+        self.senderDisplayName = FirebaseHelper.getCurrentUser().displayName
     }
 }
 
@@ -80,8 +80,8 @@ extension ChatRoomViewController {
     override func collectionView(collectionView: JSQMessagesCollectionView!, messageBubbleImageDataForItemAtIndexPath indexPath: NSIndexPath!) -> JSQMessageBubbleImageDataSource! {
         
         let data = self.chatRoom.messageList[indexPath.row]
-        switch(data.sender.objectId!) {
-            case (PFUser.currentUser()?.objectId)!:
+        switch(data.sender.uid) {
+            case (FirebaseHelper.getCurrentUser().uid):
                 return self.outgoingBubble
             default:
                 return self.incomingBubble
@@ -99,7 +99,7 @@ extension ChatRoomViewController {
 
 extension ChatRoomViewController {
     override func didPressSendButton(button: UIButton!, withMessageText text: String!, senderId: String!, senderDisplayName: String!, date: NSDate!) {
-        self.chatRoom.messageList.append(Message(body: text, sender: PFUser.currentUser()!, room: chatRoom))
+        self.chatRoom.messageList.append(Message(body: text, sender: FirebaseHelper.getCurrentUser() , room: chatRoom))
         self.finishSendingMessage()
     }
     
@@ -108,6 +108,6 @@ extension ChatRoomViewController {
     }
 }
 
-func ==(left: PFUser, right: PFUser) -> Bool {
-    return left.objectId == right.objectId
+func ==(left: User, right: User) -> Bool {
+    return left.uid == right.uid
 }

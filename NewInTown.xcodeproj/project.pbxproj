@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2403A9421D53DD1C00016883 /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2403A9411D53DD1C00016883 /* AppState.swift */; };
 		243D3D1A1D38070000C9F72A /* Venue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243D3D191D38070000C9F72A /* Venue.swift */; };
 		246703311D3412B10073D292 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 246703301D3412B10073D292 /* AppDelegate.swift */; };
 		246703361D3412B10073D292 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 246703341D3412B10073D292 /* Main.storyboard */; };
@@ -31,6 +32,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2403A9411D53DD1C00016883 /* AppState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
 		243D3D191D38070000C9F72A /* Venue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Venue.swift; sourceTree = "<group>"; };
 		2467032D1D3412B10073D292 /* NewInTown.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NewInTown.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		246703301D3412B10073D292 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -40,7 +42,7 @@
 		2467033C1D3412B10073D292 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = ../Info.plist; sourceTree = "<group>"; };
 		24976D441D41611700D02373 /* NewInTown-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NewInTown-Bridging-Header.h"; sourceTree = "<group>"; };
 		24976D451D41639600D02373 /* ChatRoom.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatRoom.swift; sourceTree = "<group>"; };
-		24B3972E1D4FCF350006EEE6 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../GoogleService-Info.plist"; sourceTree = "<group>"; };
+		24B3972E1D4FCF350006EEE6 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		24B8724E1D4FFA75006C1161 /* FirebaseHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirebaseHelper.swift; sourceTree = "<group>"; };
 		24B872501D4FFC75006C1161 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		24B872531D4FFDE4006C1161 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
@@ -100,6 +102,7 @@
 		2467032F1D3412B10073D292 /* NewInTown */ = {
 			isa = PBXGroup;
 			children = (
+				24B3972E1D4FCF350006EEE6 /* GoogleService-Info.plist */,
 				246703301D3412B10073D292 /* AppDelegate.swift */,
 				24B872571D4FFE4B006C1161 /* Views */,
 				24B872521D4FFDDB006C1161 /* Constants */,
@@ -139,7 +142,6 @@
 			isa = PBXGroup;
 			children = (
 				2467033C1D3412B10073D292 /* Info.plist */,
-				24B3972E1D4FCF350006EEE6 /* GoogleService-Info.plist */,
 			);
 			path = "Supporting Files";
 			sourceTree = "<group>";
@@ -150,6 +152,7 @@
 				24F70E391D345654001FE077 /* ErrorHandling.swift */,
 				24F70E3E1D3560AC001FE077 /* EventHelper.swift */,
 				24B8724E1D4FFA75006C1161 /* FirebaseHelper.swift */,
+				2403A9411D53DD1C00016883 /* AppState.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -305,6 +308,7 @@
 				24F70E3F1D3560AC001FE077 /* EventHelper.swift in Sources */,
 				24B872511D4FFC75006C1161 /* User.swift in Sources */,
 				243D3D1A1D38070000C9F72A /* Venue.swift in Sources */,
+				2403A9421D53DD1C00016883 /* AppState.swift in Sources */,
 				24B872611D4FFE8E006C1161 /* NearbyEventsViewTableController.swift in Sources */,
 				24B872601D4FFE8E006C1161 /* LoginViewController.swift in Sources */,
 				24976D461D41639600D02373 /* ChatRoom.swift in Sources */,

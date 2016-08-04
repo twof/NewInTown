@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="ZPf-YY-e6h">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="91d-PQ-IVx">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -19,25 +19,39 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mqL-6Z-4Pg">
-                                <rect key="frame" x="277" y="285" width="46" height="30"/>
-                                <state key="normal" title="Button"/>
+                                <rect key="frame" x="270" y="211" width="60" height="30"/>
+                                <state key="normal" title="Log In"/>
                                 <connections>
                                     <action selector="didTouchToLogin:" destination="91d-PQ-IVx" eventType="touchUpInside" id="6uu-Vy-ZCv"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nYf-0Q-UKr">
+                                <rect key="frame" x="271" y="379" width="59" height="30"/>
+                                <state key="normal" title="Sign Up"/>
+                                <connections>
+                                    <action selector="didTouchSignUp:" destination="91d-PQ-IVx" eventType="touchUpInside" id="GcZ-QZ-7oL"/>
                                 </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="trailingMargin" secondItem="mqL-6Z-4Pg" secondAttribute="trailing" constant="257" id="11y-3e-cNW"/>
-                            <constraint firstItem="mqL-6Z-4Pg" firstAttribute="leading" secondItem="KXP-hy-YJQ" secondAttribute="leadingMargin" constant="257" id="ILt-Qa-h34"/>
-                            <constraint firstItem="mqL-6Z-4Pg" firstAttribute="top" secondItem="Arw-nS-RW2" secondAttribute="bottom" constant="265" id="QuB-EQ-ssV"/>
-                            <constraint firstItem="c2O-5o-ltS" firstAttribute="top" secondItem="mqL-6Z-4Pg" secondAttribute="bottom" constant="285" id="hvc-2B-N8J"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="mqL-6Z-4Pg" secondAttribute="trailing" constant="250" id="11y-3e-cNW"/>
+                            <constraint firstItem="nYf-0Q-UKr" firstAttribute="leading" secondItem="KXP-hy-YJQ" secondAttribute="leadingMargin" constant="251" id="H4V-yt-cai"/>
+                            <constraint firstItem="nYf-0Q-UKr" firstAttribute="top" secondItem="mqL-6Z-4Pg" secondAttribute="bottom" constant="138" id="HEg-Si-OtA"/>
+                            <constraint firstItem="mqL-6Z-4Pg" firstAttribute="leading" secondItem="KXP-hy-YJQ" secondAttribute="leadingMargin" constant="250" id="ILt-Qa-h34"/>
+                            <constraint firstItem="mqL-6Z-4Pg" firstAttribute="top" secondItem="Arw-nS-RW2" secondAttribute="bottom" constant="191" id="QuB-EQ-ssV"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="nYf-0Q-UKr" secondAttribute="trailing" constant="250" id="hfu-Wy-u0a"/>
+                            <constraint firstItem="c2O-5o-ltS" firstAttribute="top" secondItem="mqL-6Z-4Pg" secondAttribute="bottom" constant="359" id="hvc-2B-N8J"/>
+                            <constraint firstItem="c2O-5o-ltS" firstAttribute="top" secondItem="nYf-0Q-UKr" secondAttribute="bottom" constant="191" id="kU1-b3-mRR"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <segue destination="ZPf-YY-e6h" kind="show" identifier="ToEventsList" id="CJ7-4s-7sf"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8ya-IM-pEL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-247" y="288"/>
+            <point key="canvasLocation" x="-250" y="288"/>
         </scene>
         <!--Nearby Events View Table Controller-->
         <scene sceneID="qAu-41-EcJ">
