@@ -3,8 +3,8 @@
 
 #Firebase Structure:
 
- <RoomId> will be the eventbright eventId
  ```
+ <RoomId> will be the eventbright eventId
 ChatRooms:
 	<RoomId>: <isActive>,
 	<RoomId>: <isActive>,
