@@ -4,7 +4,7 @@
 #Firebase Structure:
 
  <RoomId> will be the eventbright eventId
-
+ ```
 ChatRooms:
 	<RoomId>: <isActive>,
 	<RoomId>: <isActive>,
@@ -33,4 +33,4 @@ Messages:
 		<MessageId>: 
 			body: <messageBody>,
 			sender: <UserId>
-
+```
