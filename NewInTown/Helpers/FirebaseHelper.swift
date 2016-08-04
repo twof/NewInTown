@@ -7,7 +7,8 @@
 //
 
 import Foundation
-import Firebase
+import FirebaseDatabase
+import FirebaseAuth
 
 class FirebaseHelper {
     static private var ref: FIRDatabaseReference!
@@ -51,6 +52,10 @@ class FirebaseHelper {
             self.messages.append(snapshot)
             self.clientTable.insertRowsAtIndexPaths([NSIndexPath(forRow: self.messages.count-1, inSection: 0)], withRowAnimation: .Automatic)
         })
+    }
+    
+    static func getCurrentUser() -> User {
+        return FIRAuth.auth()?.currentUser as! User
     }
     
 }
