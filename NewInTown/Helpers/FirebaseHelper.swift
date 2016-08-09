@@ -62,9 +62,16 @@ class FirebaseHelper {
     }
     
     static func uploadMessage(message: Message){
-        let newMessageRef = self.ref.child(Constants.FirebaseCatagories.MESSAGES).childByAutoId()
-        
-        newMessageRef.setValue(message)
+        var newMessageRef = self.ref.child(Constants.FirebaseCatagories.MESSAGES).child(message.room.uid as String)
+       
+        newMessageRef.observeSingleEventOfType(.Value, withBlock: {(snapshot) in
+            if snapshot.exists() {
+                newMessageRef = snapshot.ref.childByAutoId()
+                message.uid = newMessageRef.key
+                newMessageRef.child(Constants.FirebaseMessage.BODY).setValue(message.body)
+                newMessageRef.child(Constants.FirebaseMessage.SENDER).setValue(message.sender.uid)
+            }
+        })
     }
     
     static func configureDatabaseForRoom(chatRoom: ChatRoom) {
