@@ -74,9 +74,6 @@ class FirebaseHelper {
         })
     }
     
-    static func configureDatabaseForRoom(chatRoom: ChatRoom) {
-    }
-    
     static func getCurrentUser() -> User {
         return FIRAuth.auth()?.currentUser as! User
     }
