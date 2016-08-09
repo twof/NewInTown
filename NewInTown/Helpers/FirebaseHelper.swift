@@ -51,11 +51,12 @@ class FirebaseHelper {
     
     static func addSelfToChatRoom(chatRoom: ChatRoom) {
         chatRoom.userList.append(FIRAuth.auth()?.currentUser as! User)
-        let newUserRef = self.ref.child(Constants.FirebaseCatagories.CHAT_ROOMS).child(chatRoom.uid as String)
         
-        self.ref.child(Constants.FirebaseCatagories.CHAT_ROOMS).child(chatRoom.name! as String).child(Constants.FirebaseChatRoom.USER_LIST).observeSingleEventOfType(.Value, withBlock: {(snapshot) in
+        self.ref.child(Constants.FirebaseCatagories.CHAT_ROOMS).child(chatRoom.uid as String).observeSingleEventOfType(.Value, withBlock: {(snapshot) in
             if snapshot.exists() {
-                
+                snapshot.ref.child(Constants.FirebaseChatRoom.USER_LIST).child((FIRAuth.auth()?.currentUser?.uid)!).setValue(false)
+            }else{
+                print("user not added to room")
             }
         })
     }
