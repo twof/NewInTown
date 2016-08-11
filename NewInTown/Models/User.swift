@@ -24,14 +24,11 @@ class User{
         self.uid = firUser.uid
     }
     
-    init(email: String, displayName: String, photoURL: String, uid: String) {
+    init(email: String, displayName: String, /*photoURL: String,*/ uid: String) {
         self.email = email
         self.displayName = displayName
         self.uid = uid
         
-        self.photoURL = NSURL(fileReferenceLiteral: photoURL)
+        //self.photoURL = NSURL(fileReferenceLiteral: photoURL)
     }
-    
-    
-    
 }

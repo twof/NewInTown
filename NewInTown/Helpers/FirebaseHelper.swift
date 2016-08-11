@@ -94,8 +94,9 @@ class FirebaseHelper {
     private static func populateUserListForRoom(chatRoom: ChatRoom){
         self.ref.child(Constants.FirebaseCatagories.CHAT_ROOM_DETAILS).child(chatRoom.uid as String).observeSingleEventOfType(.Value, withBlock: {(snapshot) in
             if snapshot.exists() {
-                chatRoom.userList = snapshot.childSnapshotForPath(Constants.FirebaseChatRoom.USER_LIST)
-                FIRAuth.
+                for user in snapshot.childSnapshotForPath(Constants.FirebaseChatRoom.USER_LIST).children {
+                    self.ref.child(Constants.FirebaseCatagories.USER_DETAILS).
+                }
             }else{
                 print("Couldn't find room to populate userlist. Something went very wrong because this should never happen")
             }
@@ -168,6 +169,21 @@ class FirebaseHelper {
                 print("user already exists in database")
             }
         })
+    }
+    
+    private static func getRefForUserId(userId: String) -> FIRDatabaseReference?{
+        var refToReturn: FIRDatabaseReference
+        
+        self.ref.child(Constants.FirebaseCatagories.USER_DETAILS).queryOrderedByKey().queryEqualToValue(userId).observeSingleEventOfType(.Value, withBlock: {(snapshot) in
+            
+            if snapshot.exists() {
+                refToReturn = snapshot.ref
+            }else{
+                print("User does not exist")
+            }
+        })
+        
+        return refToReturn
     }
 }
     
