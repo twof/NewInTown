@@ -9,23 +9,24 @@
 import Foundation
 
 struct Constants {
-    static let SPTClientID = "ce663ece19f84a358ba4d66a9a446dcc"
-    static let partyIdKey = "partyId"
-    
     
     struct FirebaseCatagories {
-        static let USERS = "users"
-        static let CHAT_ROOMS = "chatrooms"
-        static let MESSAGES = "messages"
+        static let USERS = "Users"
+        static let USER_DETAILS = "UserDetails"
+        
+        static let CHAT_ROOMS = "ChatRooms"
+        static let CHAT_ROOM_DETAILS = "ChatRoomDetails"
+        static let MESSAGES = "Messages"
     }
     
+    
     struct FirebaseUser {
-        static let USERNAME = "username"
-        static let PASSWORD = "password"
+        static let USERNAME = "userName"
         static let EMAIL = "email"
     }
     
     struct FirebaseChatRoom {
+        static let IS_ACTIVE = "isActive"
         static let NAME = "name"
         static let USER_LIST = "userList"
     }
@@ -33,6 +34,5 @@ struct Constants {
     struct FirebaseMessage {
         static let BODY = "body"
         static let SENDER = "sender"
-        static let ROOM = "room"
     }
 }
