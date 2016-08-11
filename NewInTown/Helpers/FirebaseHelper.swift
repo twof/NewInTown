@@ -77,8 +77,33 @@ class FirebaseHelper {
         })
     }
     
-    static func getCurrentUser() -> FIRUser {
-        return FIRAuth.auth()!.currentUser!
+    static func getCurrentUser() -> FIRUser? {
+        var userToReturn: FIRUser
+        
+        FIRAuth.auth()?.addAuthStateDidChangeListener { auth, user in
+            if let user = user {
+                userToReturn = user
+            } else {
+                print("No user signed in currently")
+            }
+        }
+        
+        return userToReturn
+    }
+    
+    private static func populateUserListForRoom(chatRoom: ChatRoom){
+        self.ref.child(Constants.FirebaseCatagories.CHAT_ROOM_DETAILS).child(chatRoom.uid as String).observeSingleEventOfType(.Value, withBlock: {(snapshot) in
+            if snapshot.exists() {
+                chatRoom.userList = snapshot.childSnapshotForPath(Constants.FirebaseChatRoom.USER_LIST)
+                FIRAuth.
+            }else{
+                print("Couldn't find room to populate userlist. Something went very wrong because this should never happen")
+            }
+        })
+    }
+    
+    private static func getRefForChatRoom(chatRoom: ChatRoom) -> FIRDatabaseReference? {
+        return nil
     }
     
     static func signInWithEmail(email: String, password: String, sender: UIViewController){
@@ -99,6 +124,8 @@ class FirebaseHelper {
             }
             self.setDisplayName(user!, sender: sender)
         }
+        
+        
     }
     
     private static func signedIn(user: FIRUser?, sender: UIViewController) {
@@ -122,20 +149,7 @@ class FirebaseHelper {
         }
     }
     
-    private static func populateUserListForRoom(chatRoom: ChatRoom){
-        self.ref.child(Constants.FirebaseCatagories.CHAT_ROOM_DETAILS).child(chatRoom.uid as String).observeSingleEventOfType(.Value, withBlock: {(snapshot) in
-            if snapshot.exists() {
-                chatRoom.userList = snapshot.childSnapshotForPath(Constants.FirebaseChatRoom.USER_LIST)
-                FIRAuth.
-            }else{
-                print("Couldn't find room to populate userlist. Something went very wrong because this should never happen")
-            }
-        })
-    }
-    
-    private static func getRefForChatRoom(chatRoom: ChatRoom) -> FIRDatabaseReference? {
-        return nil
-    }
+    private static func addUserToFirebase
     
     /*private static func chatroomWithNameExists(name: String) -> Bool {
         let chatroomsRef = self.ref.child(Constants.FirebaseCatagories.CHAT_ROOM_DETAILS)
