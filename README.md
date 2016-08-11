@@ -33,4 +33,14 @@ Messages:
 		<MessageId>: 
 			body: <messageBody>,
 			sender: <UserId>
+
+Users: 
+	<UserId>: false,
+	<UserId>: false
+
+UserDetails:
+	<UserId>:
+		displayName: <displayName>,
+		email: <email>, 
+		userImage: <base64Image>
 ```
