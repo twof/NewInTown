@@ -124,8 +124,6 @@ class FirebaseHelper {
             }
             self.setDisplayName(user!, sender: sender)
         }
-        
-        
     }
     
     private static func signedIn(user: FIRUser?, sender: UIViewController) {
@@ -133,6 +131,8 @@ class FirebaseHelper {
         AppState.sharedInstance.displayName = user?.displayName ?? user?.email
         AppState.sharedInstance.photoUrl = user?.photoURL
         AppState.sharedInstance.signedIn = true
+        
+        addUserToFirebase(user!)
         
         sender.performSegueWithIdentifier("ToEventListViewController", sender: sender)
     }
@@ -148,12 +148,31 @@ class FirebaseHelper {
             self.signedIn(getCurrentUser(), sender: sender)
         }
     }
+
+    /*private static func uploadImageAtRef(reference: FIRDatabaseReference){
+        var base64String: NSString!
+        reference.
+    }*/
     
-    private static func addUserToFirebase
+    private static func addUserToFirebase(user: FIRUser){
+        let usersRef = self.ref.child(Constants.FirebaseCatagories.USERS)
+        let userDetailsRef = self.ref.child(Constants.FirebaseCatagories.USER_DETAILS)
+        
+        usersRef.queryOrderedByKey().queryEqualToValue(user.uid).observeSingleEventOfType(.Value, withBlock: {(snapshot) in
+            if !snapshot.exists() {
+                usersRef.child(user.uid).setValue(false)
+                let newUserRef = userDetailsRef.child(user.uid)
+                newUserRef.child(Constants.FirebaseUser.USERNAME).setValue(user.displayName)
+                newUserRef.child(Constants.FirebaseUser.EMAIL).setValue(user.email)
+            }else {
+                print("user already exists in database")
+            }
+        })
+    }
+}
     
     /*private static func chatroomWithNameExists(name: String) -> Bool {
         let chatroomsRef = self.ref.child(Constants.FirebaseCatagories.CHAT_ROOM_DETAILS)
         
-        chatroomsRef.observeSingleEventOfType(.Value, withBlock: <#T##(FIRDataSnapshot) -> Void#>)
+        chatroomsRef.observeSingleEventOfType(.Value, withBlock: )
     }*/
-}
