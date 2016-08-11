@@ -12,7 +12,7 @@ import Firebase
 class ChatRoom {
     
     var event: Event!
-    var userList: [FIRUser]!
+    var userList: [User]!
     var messageList = [Message]()
     var lastMessageSentDate = NSDate.init(timeIntervalSince1970: 0)
     var uid: NSString!
@@ -22,9 +22,5 @@ class ChatRoom {
         self.uid = event.eventID
         userList = []
         messageList = []
-    }
-    
-    init(event: Event, userList: [FIRUser]){
-        
     }
 }

@@ -46,18 +46,19 @@ class FirebaseHelper {
                 completion(chatRoom)
             }else{
                 let foundRoom = ChatRoom(event: event)
-                foundRoom
-                completion()
+                populateUserListForRoom(foundRoom)
+                completion(foundRoom)
             }
         })
     }
     
     static func addSelfToChatRoom(chatRoom: ChatRoom) {
-        chatRoom.userList.append(getCurrentUser())
+        let currentUser = getCurrentUser()
+        chatRoom.userList.append(User(email: (currentUser?.email)!, displayName: (currentUser?.displayName)!, uid: (currentUser?.uid)!))
         
         self.ref.child(Constants.FirebaseCatagories.CHAT_ROOM_DETAILS).child(chatRoom.uid as String).observeSingleEventOfType(.Value, withBlock: {(snapshot) in
             if snapshot.exists() {
-                snapshot.ref.child(Constants.FirebaseChatRoom.USER_LIST).child(getCurrentUser().uid).setValue(false)
+                snapshot.ref.child(Constants.FirebaseChatRoom.USER_LIST).child((currentUser?.uid)!).setValue(false)
             }else{
                 print("user not added to room")
             }
@@ -78,7 +79,7 @@ class FirebaseHelper {
     }
     
     static func getCurrentUser() -> FIRUser? {
-        var userToReturn: FIRUser
+        var userToReturn: FIRUser!
         
         FIRAuth.auth()?.addAuthStateDidChangeListener { auth, user in
             if let user = user {
@@ -95,7 +96,8 @@ class FirebaseHelper {
         self.ref.child(Constants.FirebaseCatagories.CHAT_ROOM_DETAILS).child(chatRoom.uid as String).observeSingleEventOfType(.Value, withBlock: {(snapshot) in
             if snapshot.exists() {
                 for user in snapshot.childSnapshotForPath(Constants.FirebaseChatRoom.USER_LIST).children {
-                    self.ref.child(Constants.FirebaseCatagories.USER_DETAILS).
+                    chatRoom.userList.append(User(email: user.value[Constants.FirebaseUser.EMAIL] as! String, displayName: user.value[Constants.FirebaseUser.USERNAME] as! String, uid: user.key))
+                    
                 }
             }else{
                 print("Couldn't find room to populate userlist. Something went very wrong because this should never happen")
@@ -172,7 +174,7 @@ class FirebaseHelper {
     }
     
     private static func getRefForUserId(userId: String) -> FIRDatabaseReference?{
-        var refToReturn: FIRDatabaseReference
+        var refToReturn: FIRDatabaseReference!
         
         self.ref.child(Constants.FirebaseCatagories.USER_DETAILS).queryOrderedByKey().queryEqualToValue(userId).observeSingleEventOfType(.Value, withBlock: {(snapshot) in
             

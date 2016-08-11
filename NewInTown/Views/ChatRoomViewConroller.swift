@@ -52,8 +52,8 @@ class ChatRoomViewController: JSQMessagesViewController {
 //MARK - Setup
 extension ChatRoomViewController {
     func setup() {
-        self.senderId = FirebaseHelper.getCurrentUser().uid
-        self.senderDisplayName = FirebaseHelper.getCurrentUser().displayName
+        self.senderId = FirebaseHelper.getCurrentUser()!.uid
+        self.senderDisplayName = FirebaseHelper.getCurrentUser()!.displayName
     }
 }
 
@@ -78,7 +78,7 @@ extension ChatRoomViewController {
         
         let data = self.chatRoom.messageList[indexPath.row]
         switch(data.sender.uid) {
-            case (FirebaseHelper.getCurrentUser().uid):
+            case (FirebaseHelper.getCurrentUser()!.uid):
                 return self.outgoingBubble
             default:
                 return self.incomingBubble
@@ -96,7 +96,7 @@ extension ChatRoomViewController {
 
 extension ChatRoomViewController {
     override func didPressSendButton(button: UIButton!, withMessageText text: String!, senderId: String!, senderDisplayName: String!, date: NSDate!) {
-        let newMessage = Message(body: text, sender: FirebaseHelper.getCurrentUser() , room: chatRoom)
+        let newMessage = Message(body: text, sender: FirebaseHelper.getCurrentUser()! , room: chatRoom)
         self.chatRoom.messageList.append(newMessage)
         FirebaseHelper.uploadMessage(newMessage)
         self.finishSendingMessage()
