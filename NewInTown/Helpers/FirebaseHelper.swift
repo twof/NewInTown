@@ -79,17 +79,7 @@ class FirebaseHelper {
     }
     
     static func getCurrentUser() -> FIRUser? {
-        var userToReturn: FIRUser!
-        
-        FIRAuth.auth()?.addAuthStateDidChangeListener { auth, user in
-            if let user = user {
-                userToReturn = user
-            } else {
-                print("No user signed in currently")
-            }
-        }
-        
-        return userToReturn
+        return FIRAuth.auth()?.currentUser
     }
     
     private static func populateUserListForRoom(chatRoom: ChatRoom){
