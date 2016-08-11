@@ -56,7 +56,7 @@ class EventDetailViewController: UIViewController {
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "ToChatRoom" {
             let vc = segue.destinationViewController as! ChatRoomViewController
-            vc.name = event.name
+            vc.event = event
         }
     }
 }

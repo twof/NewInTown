@@ -8,17 +8,18 @@
 
 import Foundation
 import JSQMessagesViewController
+import Firebase
 import CryptoSwift
 
 class Message: NSObject {
     
     var body: NSString?
-    var sender: User!
+    var sender: FIRUser!
     var room: ChatRoom!
     var createdAt: NSDate!
     var uid: NSString!
     
-    init(body: String, sender: User, room: ChatRoom) {
+    init(body: String, sender: FIRUser, room: ChatRoom) {
         super.init()
         self.body = body
         self.sender = sender

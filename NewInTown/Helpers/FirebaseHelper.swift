@@ -29,32 +29,35 @@ class FirebaseHelper {
         })
     }
     
-    static func initializeChatRoom(name: String, completion: (ChatRoom) -> Void){
+    static func initializeChatRoom(event: Event, completion: (ChatRoom) -> Void){
         self.ref.child(Constants.FirebaseCatagories.CHAT_ROOMS).observeSingleEventOfType(.Value, withBlock: {(snapshot) in
-            if !snapshot.hasChild(name) {
-                let roomRef = self.ref.child(Constants.FirebaseCatagories.CHAT_ROOMS).childByAutoId()
+            if !snapshot.exists() {
+
+                let roomRef = self.ref.child(Constants.FirebaseCatagories.CHAT_ROOMS).child(event.eventID)
                 let roomDetailsRef = self.ref.child(Constants.FirebaseCatagories.CHAT_ROOM_DETAILS).child(roomRef.key)
                 
-                let chatRoom = ChatRoom(name: name, uid: roomRef.key)
+                let chatRoom = ChatRoom(event: event)
                 
                 roomRef.setValue(true)
                 roomDetailsRef.child(Constants.FirebaseChatRoom.IS_ACTIVE).setValue(true)
-                roomDetailsRef.child(Constants.FirebaseChatRoom.NAME).setValue(chatRoom.name)
+                roomDetailsRef.child(Constants.FirebaseChatRoom.NAME).setValue(chatRoom.event.name)
                 roomDetailsRef.child(Constants.FirebaseChatRoom.USER_LIST).setValue([])
                 
                 completion(chatRoom)
             }else{
-                completion(snapshot.childSnapshotForPath(name).value as! ChatRoom)
+                let foundRoom = ChatRoom(event: event)
+                foundRoom
+                completion()
             }
         })
     }
     
     static func addSelfToChatRoom(chatRoom: ChatRoom) {
-        chatRoom.userList.append(FIRAuth.auth()?.currentUser as! User)
+        chatRoom.userList.append(getCurrentUser())
         
-        self.ref.child(Constants.FirebaseCatagories.CHAT_ROOMS).child(chatRoom.uid as String).observeSingleEventOfType(.Value, withBlock: {(snapshot) in
+        self.ref.child(Constants.FirebaseCatagories.CHAT_ROOM_DETAILS).child(chatRoom.uid as String).observeSingleEventOfType(.Value, withBlock: {(snapshot) in
             if snapshot.exists() {
-                snapshot.ref.child(Constants.FirebaseChatRoom.USER_LIST).child((FIRAuth.auth()?.currentUser?.uid)!).setValue(false)
+                snapshot.ref.child(Constants.FirebaseChatRoom.USER_LIST).child(getCurrentUser().uid).setValue(false)
             }else{
                 print("user not added to room")
             }
@@ -74,8 +77,8 @@ class FirebaseHelper {
         })
     }
     
-    static func getCurrentUser() -> User {
-        return FIRAuth.auth()?.currentUser as! User
+    static func getCurrentUser() -> FIRUser {
+        return FIRAuth.auth()!.currentUser!
     }
     
     static func signInWithEmail(email: String, password: String, sender: UIViewController){
@@ -115,7 +118,28 @@ class FirebaseHelper {
                 print(error.localizedDescription)
                 return
             }
-            self.signedIn(FIRAuth.auth()?.currentUser, sender: sender)
+            self.signedIn(getCurrentUser(), sender: sender)
         }
     }
+    
+    private static func populateUserListForRoom(chatRoom: ChatRoom){
+        self.ref.child(Constants.FirebaseCatagories.CHAT_ROOM_DETAILS).child(chatRoom.uid as String).observeSingleEventOfType(.Value, withBlock: {(snapshot) in
+            if snapshot.exists() {
+                chatRoom.userList = snapshot.childSnapshotForPath(Constants.FirebaseChatRoom.USER_LIST)
+                FIRAuth.
+            }else{
+                print("Couldn't find room to populate userlist. Something went very wrong because this should never happen")
+            }
+        })
+    }
+    
+    private static func getRefForChatRoom(chatRoom: ChatRoom) -> FIRDatabaseReference? {
+        return nil
+    }
+    
+    /*private static func chatroomWithNameExists(name: String) -> Bool {
+        let chatroomsRef = self.ref.child(Constants.FirebaseCatagories.CHAT_ROOM_DETAILS)
+        
+        chatroomsRef.observeSingleEventOfType(.Value, withBlock: <#T##(FIRDataSnapshot) -> Void#>)
+    }*/
 }

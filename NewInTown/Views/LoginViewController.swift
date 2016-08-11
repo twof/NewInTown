@@ -7,34 +7,31 @@
 //
 
 import UIKit
-import Firebase
 
 class LoginViewController: UIViewController {
 
-    // MARK: Properties
-    var ref: FIRDatabaseReference!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.ref = FIRDatabase.database().reference()
+        FirebaseHelper.initializeFirebaseHelper()
+        //self.view.backgroundColor = UIColor.redColor()
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-    @IBAction func didTouchToLogin(sender: AnyObject?){
+    @IBAction func didTouchLoginButton(sender: UIButton) {
         // Sign In with credentials.
         let email = "fabiobean2@gmail.com"
         let password = "password"
-        FirebaseHelper.signInWithEmail(email, password: password)
+        FirebaseHelper.signInWithEmail(email, password: password, sender: self)
     }
     
-    @IBAction func didTouchSignUp(sender: AnyObject?){
+    @IBAction func didTouchSignUpButton(sender: UIButton) {
         let email = "fabiobean2@gmail.com"
         let password = "password"
-        FirebaseHelper.createNewUserWithEmail(email, password: password)
+        FirebaseHelper.createNewUserWithEmail(email, password: password, sender: self)
     }
 
     /*

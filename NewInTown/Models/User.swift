@@ -9,6 +9,7 @@
 import Foundation
 import Firebase
 
-class User: FIRUser {
+class User{
+    var ownUser: FIRUser = FIRAuth.auth()!.currentUser!
     
 }

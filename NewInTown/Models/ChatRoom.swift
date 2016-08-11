@@ -7,20 +7,24 @@
 //
 
 import Foundation
+import Firebase
 
 class ChatRoom {
     
-    var name: NSString?
-    var userList: [User]!
+    var event: Event!
+    var userList: [FIRUser]!
     var messageList = [Message]()
     var lastMessageSentDate = NSDate.init(timeIntervalSince1970: 0)
     var uid: NSString!
     
-    
-    
-    init(name: String) {
-        self.name = name
+    init(event: Event) {
+        self.event = event
+        self.uid = event.eventID
         userList = []
         messageList = []
+    }
+    
+    init(event: Event, userList: [FIRUser]){
+        
     }
 }

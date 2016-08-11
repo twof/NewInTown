@@ -65,6 +65,16 @@ class EventHelper {
         }
     }
     
+    static func getEventWithEventId(eventId: String) -> Event?{
+        var eventToReturn: Event!
+        for event in eventList {
+            if event.eventID == eventId {
+                eventToReturn = event
+            }
+        }
+        return eventToReturn
+    }
+    
     
     private static func constructEventsAPIURL() -> String{
         let url = "https://www.eventbriteapi.com/v3/events/search/?token=\(token)&location.address=\(locationAddress)&location.within=\(rangeToSearch)mi"

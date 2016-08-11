@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="91d-PQ-IVx">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="w9c-hr-Swa">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -7,49 +7,45 @@
     </dependencies>
     <scenes>
         <!--Login View Controller-->
-        <scene sceneID="MXG-do-oCR">
+        <scene sceneID="PoT-tN-wEf">
             <objects>
-                <viewController id="91d-PQ-IVx" customClass="LoginViewController" customModule="NewInTown" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LoginView" id="w9c-hr-Swa" customClass="LoginViewController" customModule="NewInTown" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="Arw-nS-RW2"/>
-                        <viewControllerLayoutGuide type="bottom" id="c2O-5o-ltS"/>
+                        <viewControllerLayoutGuide type="top" id="oOU-iN-55N"/>
+                        <viewControllerLayoutGuide type="bottom" id="kMs-wW-zKJ"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="KXP-hy-YJQ">
+                    <view key="view" contentMode="scaleToFill" id="Vdq-wx-2o2">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mqL-6Z-4Pg">
-                                <rect key="frame" x="270" y="211" width="60" height="30"/>
-                                <state key="normal" title="Log In"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GO2-qO-roJ">
+                                <rect key="frame" x="281" y="211" width="38" height="30"/>
+                                <state key="normal" title="Login"/>
                                 <connections>
-                                    <action selector="didTouchToLogin:" destination="91d-PQ-IVx" eventType="touchUpInside" id="6uu-Vy-ZCv"/>
+                                    <action selector="didTouchLoginButton:" destination="w9c-hr-Swa" eventType="touchUpInside" id="Bgv-4R-Bl9"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nYf-0Q-UKr">
-                                <rect key="frame" x="271" y="379" width="59" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NKf-ld-g2d">
+                                <rect key="frame" x="272.5" y="348" width="55" height="30"/>
                                 <state key="normal" title="Sign Up"/>
                                 <connections>
-                                    <action selector="didTouchSignUp:" destination="91d-PQ-IVx" eventType="touchUpInside" id="GcZ-QZ-7oL"/>
+                                    <action selector="didTouchSignUpButton:" destination="w9c-hr-Swa" eventType="touchUpInside" id="NJL-Sf-Qja"/>
                                 </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="trailingMargin" secondItem="mqL-6Z-4Pg" secondAttribute="trailing" constant="250" id="11y-3e-cNW"/>
-                            <constraint firstItem="nYf-0Q-UKr" firstAttribute="leading" secondItem="KXP-hy-YJQ" secondAttribute="leadingMargin" constant="251" id="H4V-yt-cai"/>
-                            <constraint firstItem="nYf-0Q-UKr" firstAttribute="top" secondItem="mqL-6Z-4Pg" secondAttribute="bottom" constant="138" id="HEg-Si-OtA"/>
-                            <constraint firstItem="mqL-6Z-4Pg" firstAttribute="leading" secondItem="KXP-hy-YJQ" secondAttribute="leadingMargin" constant="250" id="ILt-Qa-h34"/>
-                            <constraint firstItem="mqL-6Z-4Pg" firstAttribute="top" secondItem="Arw-nS-RW2" secondAttribute="bottom" constant="191" id="QuB-EQ-ssV"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="nYf-0Q-UKr" secondAttribute="trailing" constant="250" id="hfu-Wy-u0a"/>
-                            <constraint firstItem="c2O-5o-ltS" firstAttribute="top" secondItem="mqL-6Z-4Pg" secondAttribute="bottom" constant="359" id="hvc-2B-N8J"/>
-                            <constraint firstItem="c2O-5o-ltS" firstAttribute="top" secondItem="nYf-0Q-UKr" secondAttribute="bottom" constant="191" id="kU1-b3-mRR"/>
+                            <constraint firstItem="NKf-ld-g2d" firstAttribute="centerX" secondItem="Vdq-wx-2o2" secondAttribute="centerX" id="MRp-ue-tYB"/>
+                            <constraint firstItem="NKf-ld-g2d" firstAttribute="top" secondItem="GO2-qO-roJ" secondAttribute="bottom" constant="107" id="Zbp-ie-H91"/>
+                            <constraint firstItem="GO2-qO-roJ" firstAttribute="top" secondItem="oOU-iN-55N" secondAttribute="bottom" constant="191" id="oOE-ni-5MK"/>
+                            <constraint firstItem="GO2-qO-roJ" firstAttribute="centerX" secondItem="Vdq-wx-2o2" secondAttribute="centerX" id="rHv-9f-GAV"/>
                         </constraints>
                     </view>
                     <connections>
-                        <segue destination="ZPf-YY-e6h" kind="show" identifier="ToEventsList" id="CJ7-4s-7sf"/>
+                        <segue destination="ZPf-YY-e6h" kind="show" identifier="ToEventListViewController" id="r8T-KA-fza"/>
                     </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="8ya-IM-pEL" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="cvc-t8-hd5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-250" y="288"/>
         </scene>

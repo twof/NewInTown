@@ -7,29 +7,26 @@
 //
 import UIKit
 import JSQMessagesViewController
+import Firebase
 
 class ChatRoomViewController: JSQMessagesViewController {
-    var name: String!
-    var chatRoom: ChatRoom! {
-        didSet{
-            //TODO: Add observer for the chatroom
-        }
-    }
+    var event: Event!
+    var chatRoom: ChatRoom!
     
     let incomingBubble = JSQMessagesBubbleImageFactory().incomingMessagesBubbleImageWithColor(UIColor(red: 10/255, green: 180/255, blue: 230/255, alpha: 1.0))
     let outgoingBubble = JSQMessagesBubbleImageFactory().outgoingMessagesBubbleImageWithColor(UIColor.lightGrayColor())
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        FirebaseHelper.initializeChatRoom(name, completion: {(newChatRoom) in
+        FirebaseHelper.initializeChatRoom(event, completion: {(newChatRoom) in
             self.chatRoom = newChatRoom
             FirebaseHelper.addSelfToChatRoom(self.chatRoom)
-            
+            FirebaseHelper.listenForNewMessagesInRoom(self.chatRoom)
             
             //Adding a nav bar
             let navBar: UINavigationBar = UINavigationBar(frame: CGRect(x: 0, y: 0, width: UIScreen.mainScreen().bounds.width, height: 44))
             self.view.addSubview(navBar);
-            let navItem = UINavigationItem(title: self.chatRoom.name! as String);
+            let navItem = UINavigationItem(title: self.chatRoom.event.name as String);
             let doneItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Done, target: nil, action: #selector(ChatRoomViewController.backToDetailViewController));
             navItem.rightBarButtonItem = doneItem;
             navBar.setItems([navItem], animated: false);
@@ -99,7 +96,9 @@ extension ChatRoomViewController {
 
 extension ChatRoomViewController {
     override func didPressSendButton(button: UIButton!, withMessageText text: String!, senderId: String!, senderDisplayName: String!, date: NSDate!) {
-        self.chatRoom.messageList.append(Message(body: text, sender: FirebaseHelper.getCurrentUser() , room: chatRoom))
+        let newMessage = Message(body: text, sender: FirebaseHelper.getCurrentUser() , room: chatRoom)
+        self.chatRoom.messageList.append(newMessage)
+        FirebaseHelper.uploadMessage(newMessage)
         self.finishSendingMessage()
     }
     
@@ -108,6 +107,6 @@ extension ChatRoomViewController {
     }
 }
 
-func ==(left: User, right: User) -> Bool {
+func ==(left: FIRUser, right: FIRUser) -> Bool {
     return left.uid == right.uid
 }
