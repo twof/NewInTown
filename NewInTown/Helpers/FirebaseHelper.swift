@@ -17,7 +17,7 @@ class FirebaseHelper {
     
     static func initializeFirebaseHelper(){
         self.ref = FIRDatabase.database().reference()
-
+        
     }
     
     //Call this in the completion callback of initializeChatRoom
@@ -32,7 +32,7 @@ class FirebaseHelper {
     static func initializeChatRoom(event: Event, completion: (ChatRoom) -> Void){
         self.ref.child(Constants.FirebaseCatagories.CHAT_ROOMS).observeSingleEventOfType(.Value, withBlock: {(snapshot) in
             if !snapshot.exists() {
-
+                
                 let roomRef = self.ref.child(Constants.FirebaseCatagories.CHAT_ROOMS).child(event.eventID)
                 let roomDetailsRef = self.ref.child(Constants.FirebaseCatagories.CHAT_ROOM_DETAILS).child(roomRef.key)
                 
@@ -53,12 +53,12 @@ class FirebaseHelper {
     }
     
     static func addSelfToChatRoom(chatRoom: ChatRoom) {
-        let currentUser = getCurrentUser()
+        let currentUser = getCurrentFirebaseUser()
         chatRoom.userList.append(User(email: (currentUser?.email)!, displayName: (currentUser?.displayName)!, uid: (currentUser?.uid)!))
         
         self.ref.child(Constants.FirebaseCatagories.CHAT_ROOM_DETAILS).child(chatRoom.uid as String).observeSingleEventOfType(.Value, withBlock: {(snapshot) in
             if snapshot.exists() {
-                snapshot.ref.child(Constants.FirebaseChatRoom.USER_LIST).child((currentUser?.uid)!).setValue(false)
+                snapshot.ref.child(Constants.FirebaseChatRoom.USER_LIST).child((currentUser!.uid)).setValue(false)
             }else{
                 print("user not added to room")
             }
@@ -67,7 +67,7 @@ class FirebaseHelper {
     
     static func uploadMessage(message: Message){
         var newMessageRef = self.ref.child(Constants.FirebaseCatagories.MESSAGES).child(message.room.uid as String)
-       
+        
         newMessageRef.observeSingleEventOfType(.Value, withBlock: {(snapshot) in
             if snapshot.exists() {
                 newMessageRef = snapshot.ref.childByAutoId()
@@ -78,19 +78,21 @@ class FirebaseHelper {
         })
     }
     
-    static func getCurrentUser() -> FIRUser? {
+    static func getCurrentFirebaseUser() -> FIRUser? {
         return FIRAuth.auth()?.currentUser
+    }
+
+    static func getCurrentUser() -> User {
+        return User(firUser: (FIRAuth.auth()?.currentUser)!)
     }
     
     private static func populateUserListForRoom(chatRoom: ChatRoom){
         self.ref.child(Constants.FirebaseCatagories.CHAT_ROOM_DETAILS).child(chatRoom.uid as String).observeSingleEventOfType(.Value, withBlock: {(snapshot) in
-            if snapshot.exists() {
-                for user in snapshot.childSnapshotForPath(Constants.FirebaseChatRoom.USER_LIST).children {
-                    chatRoom.userList.append(User(email: user.value[Constants.FirebaseUser.EMAIL] as! String, displayName: user.value[Constants.FirebaseUser.USERNAME] as! String, uid: user.key))
-                    
-                }
-            }else{
-                print("Couldn't find room to populate userlist. Something went very wrong because this should never happen")
+            
+            for user in snapshot.childSnapshotForPath(Constants.FirebaseChatRoom.USER_LIST).children {
+                
+                chatRoom.userList.append(User(snapshot: user as! FIRDataSnapshot))
+                
             }
         })
     }
@@ -108,7 +110,6 @@ class FirebaseHelper {
             self.signedIn(user!, sender: sender)
         }
     }
-    
     static func createNewUserWithEmail(email: String, password: String, sender: UIViewController){
         FIRAuth.auth()?.createUserWithEmail(email, password: password) { (user, error) in
             if let error = error {
@@ -138,14 +139,14 @@ class FirebaseHelper {
                 print(error.localizedDescription)
                 return
             }
-            self.signedIn(getCurrentUser(), sender: sender)
+            self.signedIn(getCurrentFirebaseUser(), sender: sender)
         }
     }
-
+    
     /*private static func uploadImageAtRef(reference: FIRDatabaseReference){
-        var base64String: NSString!
-        reference.
-    }*/
+     var base64String: NSString!
+     reference.
+     }*/
     
     private static func addUserToFirebase(user: FIRUser){
         let usersRef = self.ref.child(Constants.FirebaseCatagories.USERS)
@@ -163,24 +164,22 @@ class FirebaseHelper {
         })
     }
     
-    private static func getRefForUserId(userId: String) -> FIRDatabaseReference?{
-        var refToReturn: FIRDatabaseReference!
+    static func getRefForUserId(userId: String, completion: (FIRDatabaseReference?) -> Void){
         
         self.ref.child(Constants.FirebaseCatagories.USER_DETAILS).queryOrderedByKey().queryEqualToValue(userId).observeSingleEventOfType(.Value, withBlock: {(snapshot) in
             
-            if snapshot.exists() {
-                refToReturn = snapshot.ref
+            if snapshot.childSnapshotForPath(userId).exists() {
+                completion(snapshot.childSnapshotForPath(userId).ref)
             }else{
                 print("User does not exist")
+                completion(nil)
             }
         })
-        
-        return refToReturn
     }
 }
-    
-    /*private static func chatroomWithNameExists(name: String) -> Bool {
-        let chatroomsRef = self.ref.child(Constants.FirebaseCatagories.CHAT_ROOM_DETAILS)
-        
-        chatroomsRef.observeSingleEventOfType(.Value, withBlock: )
-    }*/
+
+/*private static func chatroomWithNameExists(name: String) -> Bool {
+ let chatroomsRef = self.ref.child(Constants.FirebaseCatagories.CHAT_ROOM_DETAILS)
+ 
+ chatroomsRef.observeSingleEventOfType(.Value, withBlock: )
+ }*/

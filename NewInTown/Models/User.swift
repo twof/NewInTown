@@ -24,6 +24,15 @@ class User{
         self.uid = firUser.uid
     }
     
+    init(snapshot: FIRDataSnapshot){
+        FirebaseHelper.getRefForUserId(snapshot.key, completion: {(userRef) in
+            userRef?.observeSingleEventOfType(.Value, withBlock: {(userSnapshot) in
+                self.email = userSnapshot.value!.objectForKey(Constants.FirebaseUser.EMAIL) as! String
+                self.displayName = userSnapshot.value!.objectForKey(Constants.FirebaseUser.USERNAME) as! String
+            })
+        })
+    }
+    
     init(email: String, displayName: String, /*photoURL: String,*/ uid: String) {
         self.email = email
         self.displayName = displayName

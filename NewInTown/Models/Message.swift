@@ -13,7 +13,7 @@ import CryptoSwift
 
 class Message: NSObject {
     
-    var body: NSString?
+    var body: NSString!
     var sender: FIRUser!
     var room: ChatRoom!
     var createdAt: NSDate!
@@ -51,7 +51,7 @@ extension Message: JSQMessageData{
     }
     
     @objc func text() -> String! {
-        return body as! String
+        return body as String
     }
     
     @objc func messageHash() -> UInt{
