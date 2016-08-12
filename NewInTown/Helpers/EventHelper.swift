@@ -28,35 +28,14 @@ class EventHelper {
                 if let value = response.result.value {
                     let json = JSON(value)
                     let eventListJson = json["events"].arrayValue
-                    
+                    var allEventsList = [Event]()
                     
                     for index in 0 ... eventListJson.count - 1 {
                         
-                        eventList.append(Event(json: eventListJson[index], completion: {
-                            if index == eventListJson.count - 1 {
-                                completionHandler(eventList, nil)
-                            }
-                        }))
+                        allEventsList.append(Event(json: eventListJson[index], venue: Venue(json: eventListJson[index]["venue"])))
                     }
                     
-                    
-                }
-            case .Failure(let error):
-                print(error)
-                completionHandler(nil, error)
-            }
-        }
-    }
-    
-    static func getEventVenueForVenueId(venueId: String, completionHandler: (Venue?, NSError?) -> ()){
-        let urlToGet = constructVenueAPIURL(venueId)
-        Alamofire.request(.GET, urlToGet).validate().responseJSON() { response in
-            switch response.result {
-            case .Success:
-                if let value = response.result.value {
-                    let json = JSON(value)
-                    
-                    completionHandler(Venue(json: json), nil)
+                    completionHandler(allEventsList, nil)
                 }
             case .Failure(let error):
                 print(error)
@@ -77,13 +56,7 @@ class EventHelper {
     
     
     private static func constructEventsAPIURL() -> String{
-        let url = "https://www.eventbriteapi.com/v3/events/search/?token=\(token)&location.address=\(locationAddress)&location.within=\(rangeToSearch)mi"
-        
-        return url.stringByReplacingOccurrencesOfString(" ", withString: "%20", options: NSStringCompareOptions.LiteralSearch, range: nil)
-    }
-    
-    private static func constructVenueAPIURL(venueId: String) -> String{
-        let url = "https://www.eventbriteapi.com/v3/venues/\(venueId)/?token=\(token)"
+        let url = "https://www.eventbriteapi.com/v3/events/search/?token=\(token)&location.address=\(locationAddress)&location.within=\(rangeToSearch)mi&expand=venue"
         
         return url.stringByReplacingOccurrencesOfString(" ", withString: "%20", options: NSStringCompareOptions.LiteralSearch, range: nil)
     }

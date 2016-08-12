@@ -21,7 +21,7 @@ class Event {
     let venueID: String
     var venue: Venue!
     
-    init(json: JSON, completion: () -> Void) {
+    init(json: JSON, venue: Venue) {
         self.name = json["name"]["text"].stringValue
         self.description = json["description"]["text"].stringValue
         self.link = json["url"].stringValue
@@ -30,15 +30,6 @@ class Event {
         self.eventID = json["id"].stringValue
         self.venueID = json["venue_id"].stringValue
         self.imageURL = json["logo"]["url"].stringValue
-        
-        EventHelper.getEventVenueForVenueId(venueID, completionHandler: {venue, error in
-            
-            if(error != nil){
-                print(error)
-            }
-            
-            self.venue = venue
-            completion()
-        })
+        self.venue = venue
     }
 }
