@@ -24,12 +24,6 @@ class Message: NSObject {
         self.body = body
         self.sender = sender
         self.room = room
-        //Add message to it's respective
-        uploadMessage()
-    }
-    
-    func uploadMessage() {
-        FirebaseHelper.uploadMessage(self)
     }
 }
 

@@ -23,7 +23,7 @@ class FirebaseHelper {
     //Call this in the completion callback of initializeChatRoom
     static func listenForNewMessagesInRoom(chatRoom: ChatRoom){
         // Listen for new messages in the Firebase database
-        _refHandle = self.ref.child(Constants.FirebaseCatagories.MESSAGES).queryOrderedByKey().queryEqualToValue(chatRoom.uid).observeEventType(.ChildAdded, withBlock: { (snapshot) -> Void in
+        _refHandle = self.ref.child(Constants.FirebaseCatagories.MESSAGES).queryOrderedByKey().queryEqualToValue(chatRoom.uid).observeEventType(.ChildChanged, withBlock: { (snapshot) -> Void in
             
             chatRoom.messageList.append(snapshot.value as! Message)
         })
@@ -66,16 +66,11 @@ class FirebaseHelper {
     }
     
     static func uploadMessage(message: Message){
-        var newMessageRef = self.ref.child(Constants.FirebaseCatagories.MESSAGES).child(message.room.uid as String)
+        let roomRef = self.ref.child(Constants.FirebaseCatagories.MESSAGES).child(message.room.uid as String)
         
-        newMessageRef.observeSingleEventOfType(.Value, withBlock: {(snapshot) in
-            if snapshot.exists() {
-                newMessageRef = snapshot.ref.childByAutoId()
-                message.uid = newMessageRef.key
-                newMessageRef.child(Constants.FirebaseMessage.BODY).setValue(message.body)
-                newMessageRef.child(Constants.FirebaseMessage.SENDER).setValue(message.sender.uid)
-            }
-        })
+        let messageRef = roomRef.childByAutoId()
+        
+        messageRef.setValue([Constants.FirebaseMessage.BODY: message.body, Constants.FirebaseMessage.SENDER: message.sender.uid])
     }
     
     static func getCurrentFirebaseUser() -> FIRUser? {
