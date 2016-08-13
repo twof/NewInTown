@@ -59,8 +59,11 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="NewInTownLogo" translatesAutoresizingMaskIntoConstraints="NO" id="Gdl-Pq-HGn">
                                 <rect key="frame" x="224" y="-18" width="153" height="232"/>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ngr-j3-Wot">
-                                <rect key="frame" x="50" y="335" width="500" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ngr-j3-Wot">
+                                <rect key="frame" x="50" y="335" width="500" height="106"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="106" id="gaQ-J3-20y"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -71,6 +74,8 @@
                             <constraint firstItem="ztm-8k-OzV" firstAttribute="leading" secondItem="Vdq-wx-2o2" secondAttribute="leadingMargin" constant="30" id="2Es-hN-S9U"/>
                             <constraint firstAttribute="trailing" secondItem="GO2-qO-roJ" secondAttribute="trailing" id="5fc-XO-n2u"/>
                             <constraint firstItem="GO2-qO-roJ" firstAttribute="leading" secondItem="Vdq-wx-2o2" secondAttribute="leading" id="5pc-ZW-dGe"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="ngr-j3-Wot" secondAttribute="trailing" constant="30" id="6Uf-qc-Mzv"/>
+                            <constraint firstItem="ngr-j3-Wot" firstAttribute="leading" secondItem="Vdq-wx-2o2" secondAttribute="leadingMargin" constant="30" id="DMU-k4-fOq"/>
                             <constraint firstItem="NKf-ld-g2d" firstAttribute="top" secondItem="GO2-qO-roJ" secondAttribute="bottom" constant="2" id="H1n-Q4-Tco"/>
                             <constraint firstItem="i7n-AU-W1F" firstAttribute="top" secondItem="ztm-8k-OzV" secondAttribute="bottom" constant="35" id="L4D-uN-S06"/>
                             <constraint firstItem="i7n-AU-W1F" firstAttribute="leading" secondItem="Vdq-wx-2o2" secondAttribute="leadingMargin" constant="30" id="Nk6-76-158"/>
@@ -78,6 +83,7 @@
                             <constraint firstItem="ztm-8k-OzV" firstAttribute="centerX" secondItem="Vdq-wx-2o2" secondAttribute="centerX" id="URk-Cp-gaD"/>
                             <constraint firstAttribute="trailingMargin" secondItem="ztm-8k-OzV" secondAttribute="trailing" constant="30" id="VMU-4a-uZb"/>
                             <constraint firstAttribute="trailingMargin" secondItem="i7n-AU-W1F" secondAttribute="trailing" constant="30" id="XTS-OH-izJ"/>
+                            <constraint firstItem="ngr-j3-Wot" firstAttribute="top" secondItem="i7n-AU-W1F" secondAttribute="bottom" constant="44" id="aDh-e0-bKh"/>
                             <constraint firstItem="ztm-8k-OzV" firstAttribute="top" secondItem="oOU-iN-55N" secondAttribute="bottom" constant="176" id="dPx-xT-m9k"/>
                             <constraint firstItem="Gdl-Pq-HGn" firstAttribute="top" secondItem="oOU-iN-55N" secondAttribute="bottom" constant="-38" id="hXQ-SX-yhg"/>
                             <constraint firstItem="Gdl-Pq-HGn" firstAttribute="centerX" secondItem="Vdq-wx-2o2" secondAttribute="centerX" id="ivL-Rs-8rh"/>
@@ -94,6 +100,7 @@
                     </view>
                     <connections>
                         <outlet property="emailField" destination="ztm-8k-OzV" id="Ff7-Pb-Xd1"/>
+                        <outlet property="errorLabel" destination="ngr-j3-Wot" id="831-xZ-rPa"/>
                         <outlet property="passwordField" destination="i7n-AU-W1F" id="Km9-Z3-Vc1"/>
                         <segue destination="XU9-83-qvf" kind="show" identifier="ToEventListViewController" id="r8T-KA-fza"/>
                     </connections>

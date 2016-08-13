@@ -114,13 +114,15 @@ class FirebaseHelper {
     }
     
     // MARK: - 1
-    static func signInWithEmail(email: String, password: String, sender: UIViewController){
+    static func signInWithEmail(email: String, password: String, sender: UIViewController, completion: (NSError?) -> Void){
         FIRAuth.auth()?.signInWithEmail(email, password: password) { (user, error) in
             if let error = error {
                 print(error.localizedDescription)
+                completion(error)
                 return
             }
             self.signedIn(user!, sender: sender)
+            completion(nil)
         }
     }
     static func createNewUserWithEmail(email: String, password: String, sender: UIViewController){
