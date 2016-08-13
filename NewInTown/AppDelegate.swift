@@ -20,13 +20,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         FIRApp.configure()
         
-        //This is a hack. It should work without forcing it to the view controller but it doens't and I'm not sure why
-        let mainStoryboardIpad : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-        let initialViewControlleripad : UIViewController = mainStoryboardIpad.instantiateViewControllerWithIdentifier("LoginView") as! LoginViewController
-        self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
-        self.window?.rootViewController = initialViewControlleripad
-        self.window?.makeKeyAndVisible()
-        
         return true
     }
     

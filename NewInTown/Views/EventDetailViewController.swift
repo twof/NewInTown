@@ -23,6 +23,7 @@ class EventDetailViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.title = event.name
         eventDescription.text = event.description
         eventDateAndTime.text = event.startTime
         eventTitle.text = event.name
@@ -54,9 +55,8 @@ class EventDetailViewController: UIViewController {
     @IBAction func unwindToEventDetailViewController(segue: UIStoryboardSegue) {}
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if segue.identifier == "ToChatRoom" {
-            let vc = segue.destinationViewController as! ChatRoomViewController
-            vc.event = event
+        if let embeddedVC = segue.destinationViewController as? ChatRoomViewController where segue.identifier == "ToChatRoom" {
+            embeddedVC.event = event
         }
     }
 }

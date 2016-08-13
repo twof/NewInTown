@@ -18,18 +18,30 @@ class ChatRoomViewController: JSQMessagesViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+//        self.edgesForExtendedLayout = .Top
         FirebaseHelper.initializeChatRoom(event, completion: {(newChatRoom) in
             self.chatRoom = newChatRoom
             FirebaseHelper.addSelfToChatRoom(self.chatRoom)
-            FirebaseHelper.listenForNewMessagesInRoom(self.chatRoom)
-            
-            //Adding a nav bar
+            FirebaseHelper.listenForNewMessagesInRoom(self.chatRoom, messageCallback: {(message) in
+                self.chatRoom.messageList.append(message)
+                self.reloadMessagesView()
+            })
+            FirebaseHelper.populateUserListForRoom(self.chatRoom, completion: {(userList) in
+                self.chatRoom.userList = userList
+            })
+           /* FirebaseHelper.populateMessagesForRoom(self.chatRoom, completion: {(messageList) in
+                self.chatRoom.messageList = messageList
+                self.reloadMessagesView()
+            })*/
+           
+            /*//Adding a nav bar
             let navBar: UINavigationBar = UINavigationBar(frame: CGRect(x: 0, y: 0, width: UIScreen.mainScreen().bounds.width, height: 44))
             self.view.addSubview(navBar);
             let navItem = UINavigationItem(title: self.chatRoom.event.name as String);
             let doneItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Done, target: nil, action: #selector(ChatRoomViewController.backToDetailViewController));
-            navItem.rightBarButtonItem = doneItem;
+            navItem.leftBarButtonItem = doneItem;
             navBar.setItems([navItem], animated: false);
+            self.scrollToBottomAnimated(false)*/
             
         })
         self.setup()
@@ -54,6 +66,7 @@ extension ChatRoomViewController {
     func setup() {
         self.senderId = FirebaseHelper.getCurrentFirebaseUser()!.uid
         self.senderDisplayName = FirebaseHelper.getCurrentFirebaseUser()!.displayName
+        
     }
 }
 
@@ -82,7 +95,7 @@ extension ChatRoomViewController {
                 return self.outgoingBubble
             default:
                 return self.incomingBubble
-            }
+        }
     }
     
     override func collectionView(collectionView: JSQMessagesCollectionView!, avatarImageDataForItemAtIndexPath indexPath: NSIndexPath!) -> JSQMessageAvatarImageDataSource! {
@@ -96,8 +109,7 @@ extension ChatRoomViewController {
 
 extension ChatRoomViewController {
     override func didPressSendButton(button: UIButton!, withMessageText text: String!, senderId: String!, senderDisplayName: String!, date: NSDate!) {
-        let newMessage = Message(body: text, sender: FirebaseHelper.getCurrentFirebaseUser()! , room: chatRoom)
-        self.chatRoom.messageList.append(newMessage)
+        let newMessage = Message(body: text, sender: FirebaseHelper.getCurrentUser(), room: chatRoom)
         FirebaseHelper.uploadMessage(newMessage)
         self.finishSendingMessage()
     }

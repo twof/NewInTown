@@ -23,16 +23,18 @@ class EventHelper {
     static func constructEventListWithParams(completionHandler: ([Event]?, NSError?) -> ()){
         let urlToGet = constructEventsAPIURL()
         Alamofire.request(.GET, urlToGet).validate().responseJSON() { response in
+            print("NETWORK CALL FINISHED")
+            
             switch response.result {
             case .Success:
                 if let value = response.result.value {
                     let json = JSON(value)
                     let eventListJson = json["events"].arrayValue
                     var allEventsList = [Event]()
-                    
                     for index in 0 ... eventListJson.count - 1 {
                         
-                        allEventsList.append(Event(json: eventListJson[index], venue: Venue(json: eventListJson[index]["venue"])))
+                        allEventsList.append(Event(json: eventListJson[index],
+                            venue: Venue(json: eventListJson[index]["venue"])))
                     }
                     
                     completionHandler(allEventsList, nil)

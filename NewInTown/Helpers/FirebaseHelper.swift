@@ -10,10 +10,12 @@ import Foundation
 import UIKit
 import FirebaseDatabase
 import FirebaseAuth
+import JSQMessagesViewController
 
 class FirebaseHelper {
     static private var ref: FIRDatabaseReference!
     static private var _refHandle: FIRDatabaseHandle!
+    static var senderCounter = 0
     
     static func initializeFirebaseHelper(){
         self.ref = FIRDatabase.database().reference()
@@ -21,11 +23,14 @@ class FirebaseHelper {
     }
     
     //Call this in the completion callback of initializeChatRoom
-    static func listenForNewMessagesInRoom(chatRoom: ChatRoom){
+    static func listenForNewMessagesInRoom(chatRoom: ChatRoom, messageCallback: (Message) -> Void){
         // Listen for new messages in the Firebase database
-        _refHandle = self.ref.child(Constants.FirebaseCatagories.MESSAGES).queryOrderedByKey().queryEqualToValue(chatRoom.uid).observeEventType(.ChildChanged, withBlock: { (snapshot) -> Void in
+        _refHandle = self.ref.child(Constants.FirebaseCatagories.MESSAGES).child(chatRoom.uid as String).observeEventType(.ChildAdded, withBlock: { (snapshot) -> Void in
             
-            chatRoom.messageList.append(snapshot.value as! Message)
+            self.ref.child(Constants.FirebaseCatagories.USER_DETAILS).child(snapshot.childSnapshotForPath(Constants.FirebaseMessage.SENDER).value as! String).observeSingleEventOfType(.Value, withBlock: {(userSnapshot) in
+              
+                messageCallback(Message(messageSnapshot: snapshot, userSnapshot: userSnapshot, room: chatRoom))
+            })
         })
     }
     
@@ -46,7 +51,6 @@ class FirebaseHelper {
                 completion(chatRoom)
             }else{
                 let foundRoom = ChatRoom(event: event)
-                populateUserListForRoom(foundRoom)
                 completion(foundRoom)
             }
         })
@@ -54,7 +58,7 @@ class FirebaseHelper {
     
     static func addSelfToChatRoom(chatRoom: ChatRoom) {
         let currentUser = getCurrentFirebaseUser()
-        chatRoom.userList.append(User(email: (currentUser?.email)!, displayName: (currentUser?.displayName)!, uid: (currentUser?.uid)!))
+        //chatRoom.userList.append(User(email: (currentUser?.email)!, displayName: (currentUser?.displayName)!, uid: (currentUser?.uid)!))
         
         self.ref.child(Constants.FirebaseCatagories.CHAT_ROOM_DETAILS).child(chatRoom.uid as String).observeSingleEventOfType(.Value, withBlock: {(snapshot) in
             if snapshot.exists() {
@@ -81,21 +85,35 @@ class FirebaseHelper {
         return User(firUser: (FIRAuth.auth()?.currentUser)!)
     }
     
-    private static func populateUserListForRoom(chatRoom: ChatRoom){
+    static func populateUserListForRoom(chatRoom: ChatRoom, completion: ([User]) -> Void){
         self.ref.child(Constants.FirebaseCatagories.CHAT_ROOM_DETAILS).child(chatRoom.uid as String).observeSingleEventOfType(.Value, withBlock: {(snapshot) in
-            
+            var userList = [User]()
             for user in snapshot.childSnapshotForPath(Constants.FirebaseChatRoom.USER_LIST).children {
                 
-                chatRoom.userList.append(User(snapshot: user as! FIRDataSnapshot))
+                userList.append(User(snapshot: user as! FIRDataSnapshot, completion: {() in
+                    
+                }))
+            }
+            completion(userList)
+        })
+    }
+    
+    static func populateMessagesForRoom(chatRoom: ChatRoom, completion: ([Message]) -> Void){
+        
+        self.ref.child(Constants.FirebaseCatagories.MESSAGES).child(chatRoom.uid as String).observeSingleEventOfType(.Value, withBlock: {(snapshot) in
+           
+            for message in snapshot.children {
                 
+                self.ref.child(Constants.FirebaseCatagories.USER_DETAILS).child(message.childSnapshotForPath(Constants.FirebaseMessage.SENDER).value as! String).observeSingleEventOfType(.ChildAdded, withBlock: {(userSnapshot) in
+                
+                    chatRoom.messageList.append(Message(messageSnapshot: message as! FIRDataSnapshot, userSnapshot: userSnapshot, room: chatRoom))
+            
+                })
             }
         })
     }
     
-    private static func getRefForChatRoom(chatRoom: ChatRoom) -> FIRDatabaseReference? {
-        return nil
-    }
-    
+    // MARK: - 1
     static func signInWithEmail(email: String, password: String, sender: UIViewController){
         FIRAuth.auth()?.signInWithEmail(email, password: password) { (user, error) in
             if let error = error {
@@ -114,7 +132,7 @@ class FirebaseHelper {
             self.setDisplayName(user!, sender: sender)
         }
     }
-    
+    // MARK: - 2
     private static func signedIn(user: FIRUser?, sender: UIViewController) {
         
         AppState.sharedInstance.displayName = user?.displayName ?? user?.email
@@ -142,7 +160,7 @@ class FirebaseHelper {
      var base64String: NSString!
      reference.
      }*/
-    
+    // MARK: - 3
     private static func addUserToFirebase(user: FIRUser){
         let usersRef = self.ref.child(Constants.FirebaseCatagories.USERS)
         let userDetailsRef = self.ref.child(Constants.FirebaseCatagories.USER_DETAILS)
@@ -161,7 +179,7 @@ class FirebaseHelper {
     
     static func getRefForUserId(userId: String, completion: (FIRDatabaseReference?) -> Void){
         
-        self.ref.child(Constants.FirebaseCatagories.USER_DETAILS).queryOrderedByKey().queryEqualToValue(userId).observeSingleEventOfType(.Value, withBlock: {(snapshot) in
+        self.ref.child(Constants.FirebaseCatagories.USER_DETAILS).observeSingleEventOfType(.Value, withBlock: {(snapshot) in
             
             if snapshot.childSnapshotForPath(userId).exists() {
                 completion(snapshot.childSnapshotForPath(userId).ref)

@@ -28,25 +28,21 @@ class NearbyEventsViewTableController: UITableViewController {
         })
     }
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-    }
-    
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 1
-    }
-    
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int{
         return EventHelper.eventList.count
     }
     
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("EventCardViewCell") as? EventCardViewCell
-        cell?.eventNameLabel.text = EventHelper.eventList[indexPath.row].name
-        loadEventImage(EventHelper.eventList[indexPath.row].imageURL, imageViewToSet: (cell?.eventLogoImage)!)
+        let cell = tableView.dequeueReusableCellWithIdentifier("EventCardViewCell") as! EventCardViewCell
+        cell.eventNameLabel.text = EventHelper.eventList[indexPath.row].name
         
-        return cell!
+        let event = EventHelper.eventList[indexPath.row]
+        
+        let URLString = NSURL(string: event.imageURL)!
+        cell.eventLogoImage.af_setImageWithURL(URLString)
+        
+        return cell
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
@@ -55,20 +51,7 @@ class NearbyEventsViewTableController: UITableViewController {
         
         vc.event = EventHelper.eventList[indexPath]
     }
-    
-    func loadEventImage(urlString: String, imageViewToSet: UIImageView){
-        Alamofire.request(.GET, urlString)
-            .responseImage { response in
-                
-                if let image = response.result.value {
-                    let size = CGSize(width: imageViewToSet.frame.width, height: imageViewToSet.frame.height)
-                    let aspectScaledToFitImage = image.af_imageAspectScaledToFitSize(size)
-                    imageViewToSet.image = aspectScaledToFitImage
-                }
-        }
-    }
-    
-    
+
     @IBAction func unwindToEventListViewController(segue: UIStoryboardSegue){
     }
 }

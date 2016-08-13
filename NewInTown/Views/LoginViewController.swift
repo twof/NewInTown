@@ -10,6 +10,8 @@ import UIKit
 
 class LoginViewController: UIViewController {
 
+    @IBOutlet weak var emailField: UITextField!
+    @IBOutlet weak var passwordField: UITextField!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -17,31 +19,18 @@ class LoginViewController: UIViewController {
         //self.view.backgroundColor = UIColor.redColor()
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
     @IBAction func didTouchLoginButton(sender: UIButton) {
         // Sign In with credentials.
-        let email = "fabiobean2@gmail.com"
-        let password = "password"
-        FirebaseHelper.signInWithEmail(email, password: password, sender: self)
+        let email = emailField.text
+        let password = passwordField.text
+        FirebaseHelper.signInWithEmail(email!, password: password!, sender: self)
     }
     
     @IBAction func didTouchSignUpButton(sender: UIButton) {
-        let email = "fabiobean2@gmail.com"
-        let password = "password"
-        FirebaseHelper.createNewUserWithEmail(email, password: password, sender: self)
+        let email = emailField.text
+        let password = passwordField.text
+        FirebaseHelper.createNewUserWithEmail(email!, password: password!, sender: self)
     }
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }
