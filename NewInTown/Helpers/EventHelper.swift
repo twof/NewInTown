@@ -58,7 +58,7 @@ class EventHelper {
     
     
     private static func constructEventsAPIURL() -> String{
-        let url = "https://www.eventbriteapi.com/v3/events/search/?token=\(token)&location.address=\(locationAddress)&location.within=\(rangeToSearch)mi&expand=venue&sort_by=date"
+        let url = "https://www.eventbriteapi.com/v3/events/search/?token=\(token)&location.address=\(locationAddress)&location.within=\(rangeToSearch)mi&expand=venue"
         
         return url.stringByReplacingOccurrencesOfString(" ", withString: "%20", options: NSStringCompareOptions.LiteralSearch, range: nil)
     }

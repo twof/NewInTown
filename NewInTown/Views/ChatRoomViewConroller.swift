@@ -18,7 +18,6 @@ class ChatRoomViewController: JSQMessagesViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        self.edgesForExtendedLayout = .Top
         FirebaseHelper.initializeChatRoom(event, completion: {(newChatRoom) in
             self.chatRoom = newChatRoom
             FirebaseHelper.addSelfToChatRoom(self.chatRoom)
@@ -29,6 +28,7 @@ class ChatRoomViewController: JSQMessagesViewController {
             FirebaseHelper.populateUserListForRoom(self.chatRoom, completion: {(userList) in
                 self.chatRoom.userList = userList
             })
+            self.scrollToBottomAnimated(false)
            /* FirebaseHelper.populateMessagesForRoom(self.chatRoom, completion: {(messageList) in
                 self.chatRoom.messageList = messageList
                 self.reloadMessagesView()
@@ -59,6 +59,7 @@ class ChatRoomViewController: JSQMessagesViewController {
     func reloadMessagesView() {
         self.collectionView?.reloadData()
     }
+    
 }
 
 //MARK - Setup
